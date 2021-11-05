@@ -8,7 +8,7 @@ const LoginScreen = (props)=>{
 				<Text style = {styles.screenTitle}>Sign In</Text>
 				<SignUpInfo title = "Email"/>
 				<SignUpInfo title = "Password"/>
-				<TouchableOpacity>
+				<TouchableOpacity onPress = {function(){props.navigation.navigate("Tabs")}}>
 					<Text>Login</Text>
 				</TouchableOpacity>
 			</View>
