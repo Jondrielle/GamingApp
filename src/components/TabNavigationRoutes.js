@@ -7,7 +7,7 @@ import SettingsScreen from "../screens/SettingsScreen";
 import { Ionicons, Entypo, Octicons } from '@expo/vector-icons';
 
 
-const TabNavigatorHelper = createBottomTabNavigator({
+const TabNavigationRoutes = createBottomTabNavigator({
     SavedGames: {
         screen: SavedGamesScreen,
         navigationOptions: {
@@ -55,4 +55,4 @@ tabBarOptions: {
 }	
 });
 
-export default TabNavigatorHelper;
+export default TabNavigationRoutes;

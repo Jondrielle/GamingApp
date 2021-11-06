@@ -9,7 +9,7 @@ const SearchBar = (props) => {
 				placeholder = "Search"
 				value = {props.searchTerm}
 				autoCapitalize = "none"
-				autoCorrect = "false"
+				autoCorrect = {false}
 				onChangeText = { (newTerm) => props.onTermChange(newTerm) }
 				onEndEditing = { () => {console.log("Entered")} }
 				/>

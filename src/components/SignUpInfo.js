@@ -6,6 +6,7 @@ const SignUpInfo = (props)=>{
 };
 
 const styles = StyleSheet.create({
+	
 });
 
 export default SignUpInfo;

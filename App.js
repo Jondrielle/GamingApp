@@ -1,37 +1,51 @@
 import {createAppContainer} from "react-navigation";
 import {createStackNavigator} from "react-navigation-stack";
-import WelcomeScreen from "./src/screens/WelcomeScreen";
+import { createSwitchNavigator } from "react-navigation";
 import LoginScreen from "./src/screens/LoginScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import TutorialScreen from "./src/screens/TutorialScreen";
-import GameDetailScreen from "./src/screens/GameDetailsScreen";
-import TabNavigatorHelper from "./src/components/TabNavigatorHelper";
+import SplashScreen from "./src/screens/SplashScreen";
+import TabNavigationRoutes from "./src/components/TabNavigationRoutes";
 
-const TabNavigator = TabNavigatorHelper;
-
-const navigator = createStackNavigator({
-	Welcome: WelcomeScreen,
+// A Stack Navigator for authentication screens and tutorial 
+const AuthStack = createStackNavigator({
 	Tutorial: TutorialScreen,
-	Login:LoginScreen,
-	Signup: SignUpScreen,
-	Details: GameDetailScreen,
-	Tabs: {
-		screen: TabNavigator,
+	Login: {
+		screen: LoginScreen,
 		navigationOptions: {
-			title: "Home",
-			header: () => {}
-		},
-		
-		
-	}
-	//User: UserScreen
+			headerShown: false
+		}
+	},
+	Signup: {
+		screen: SignUpScreen,
+		navigationOptions: {
+			title: "",
+			headerTransparent: true
+		}
+	},
 },
 {
-	initialRouteName: "Welcome",
-	defaultNavigationOptions: {
-		title: "Gaming App"
-	}
+	initialRouteName: "Login",
+	
 
 });
 
-export default createAppContainer(navigator);
+export default createAppContainer(
+	createSwitchNavigator({
+		// Plays for 5 seconds on the opening of the app 
+		Splash: {
+			screen: SplashScreen,
+		},
+		//Stack Navigation route
+		Auth: {
+			screen: AuthStack
+		},
+		//Tab Navigation route
+		Tab: {
+			screen: TabNavigationRoutes
+		},
+	},
+	{
+		initialRouteName: "Splash",
+	})
+);
