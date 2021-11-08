@@ -12,7 +12,6 @@ const UserEmailInput = (props) => {
                 onChangeText={ (newTerm) => props.onTermChange(newTerm)}
                 autoCorrect={false}
                 autoCapitalize= 'none'
-
             />
     </View>
 }

@@ -10,6 +10,7 @@ const PasswordInput = (props) => {
                 placeholder= "Password"
                 value = {props.userPassword}
                 style = {styles.input}
+                secureTextEntry = {true}
                 onChangeText={ (newTerm) => props.onTermChange(newTerm)}
                 autoCorrect={false}
                 autoCapitalize= 'none'

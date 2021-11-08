@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Text,StyleSheet,View,TouchableOpacity,TextInput} from "react-native";
+import {Text,StyleSheet,View,TouchableOpacity,TextInput,Input} from "react-native";
 import UserNameInput from "../components/UserNameInput";
 import PasswordInput from "../components/PasswordInput";
 
