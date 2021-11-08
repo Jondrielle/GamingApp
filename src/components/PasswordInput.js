@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
-import { Fontisto} from '@expo/vector-icons';
+import { Fontisto,Entypo} from '@expo/vector-icons';
 
 
 const PasswordInput = (props) => {
@@ -14,8 +14,8 @@ const PasswordInput = (props) => {
                 onChangeText={ (newTerm) => props.onTermChange(newTerm)}
                 autoCorrect={false}
                 autoCapitalize= 'none'
-
             />
+            <Entypo name = "eye-with-line" style = {styles.iconStyle}/>
     </View>
 }
 
