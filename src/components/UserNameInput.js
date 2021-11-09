@@ -4,7 +4,7 @@ import { Ionicons} from '@expo/vector-icons';
 
 
 const UserNameInput = (props) => {
-    return <View style = {styles.viewStyle} >
+    return <View style = {styles.viewStyle}>
             <Ionicons name = "person" style = {styles.iconStyle}/>
             <TextInput 
                 placeholder= "Username"
@@ -13,7 +13,6 @@ const UserNameInput = (props) => {
                 onChangeText={ (newTerm) => props.onTermChange(newTerm)}
                 autoCorrect={false}
                 autoCapitalize= 'none'
-
             />
     </View>
 }
@@ -29,7 +28,6 @@ const styles = StyleSheet.create({
         shadowColor: "black",
     },
     input: {
-
         flex: 1
     },
     iconStyle: {

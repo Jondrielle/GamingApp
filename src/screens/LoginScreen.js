@@ -4,6 +4,7 @@ import UserNameInput from "../components/UserNameInput";
 import PasswordInput from "../components/PasswordInput";
 import RoundButton from "../components/RoundButton";
 import TextButton from "../components/TextButton";
+import UserTextInputView from "../components/UserTextInputView";
 
 
 const LoginScreen = (props)=>{
@@ -79,10 +80,6 @@ const styles = StyleSheet.create({
 	//password input styles
 	passwordStyle: {
 		marginTop: 30
-	},
-	forgotpasswordStyle:{
-		alignSelf:"flex-end",
-		justifyContent:"flex-end"
 	},
 	//login button styles
 	loginButton:{
