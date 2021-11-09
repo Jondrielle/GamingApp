@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {Text,StyleSheet,View,TouchableOpacity,TextInput,Input} from "react-native";
 import UserNameInput from "../components/UserNameInput";
 import PasswordInput from "../components/PasswordInput";
+import RoundButton from "../components/RoundButton";
+import TextButton from "../components/TextButton";
 
 
 const LoginScreen = (props)=>{
@@ -30,16 +32,20 @@ const LoginScreen = (props)=>{
 					/>
 				</View>
 
-				<TouchableOpacity style={styles.loginButton} onPress={function(){props.navigation.navigate("Tab")}}>
-					<Text style={styles.loginText}>Sign in</Text>
+				<TouchableOpacity>
+					<TextButton text = "Forgot Password?"/>
+				</TouchableOpacity>
+
+				<TouchableOpacity onPress={function(){props.navigation.navigate("Tab")}}>
+					<RoundButton title = "Sign In"/>
 				</TouchableOpacity>
 				{/* Create account prompt*/}
 				<Text style={{marginTop: 200, fontSize: 19, alignSelf: "center"}}>
 					Don't have an account?   
 				</Text>
 				<TouchableOpacity style={{alignSelf: "center"}} onPress={function(){props.navigation.navigate("Signup")}} >
-					<Text style={{fontWeight: "bold", textDecorationLine: "underline", fontSize: 19}}>
-						Create
+					<Text style={{fontWeight: "bold",color:"#365544", fontSize: 19}}>
+						Register
 					</Text>
 				</TouchableOpacity>
 				
@@ -49,7 +55,8 @@ const LoginScreen = (props)=>{
 
 const styles = StyleSheet.create({
 	background:{
-		alignItems: "center"
+		alignItems: "center",
+		backgroundColor:"#D3D3D3"
 	},
 	innerBackground:{
 		width:365,
@@ -61,7 +68,7 @@ const styles = StyleSheet.create({
 		fontSize: 100,
 		fontWeight: "bold",
 		height: 130,
-		alignSelf: "center"
+		alignSelf: "center",
 	},
 
 	//username input styles
@@ -73,10 +80,13 @@ const styles = StyleSheet.create({
 	passwordStyle: {
 		marginTop: 30
 	},
-
+	forgotpasswordStyle:{
+		alignSelf:"flex-end",
+		justifyContent:"flex-end"
+	},
 	//login button styles
 	loginButton:{
-		backgroundColor: "black",
+		backgroundColor: "#365544",
 		marginTop: 30,
 		alignItems: "center",
 		justifyContent: "center",
@@ -86,11 +96,7 @@ const styles = StyleSheet.create({
 		elevation: 15,
         shadowColor: "black",
 	},
-	loginText: {
-		fontWeight: "bold",
-		fontSize: 25, 
-		color: "white"
-	}
+
 });
 
 export default LoginScreen;

@@ -4,6 +4,7 @@ import TutorialScreen from "../screens/TutorialScreen";
 import UserNameInput from "../components/UserNameInput";
 import PasswordInput from "../components/PasswordInput";
 import UserEmailInput from "../components/UserEmailInput";
+import RoundButton from "../components/RoundButton";
 
 
 const SignUpScreen = (props)=>{
@@ -28,9 +29,9 @@ const SignUpScreen = (props)=>{
 		<View style={styles.emailView}>
 		<UserEmailInput userEmail={userEmail} onTermChange={(newTerm) => setUserEmail(newTerm)}/>
 		</View>
-
-		<TouchableOpacity onPress = {function(){props.navigation.navigate("Tutorial")}} style={styles.createButton}>
-			<Text style={{color: "white", fontSize: 25, fontWeight: "bold"}}>Create</Text>
+		
+		<TouchableOpacity style = {{marginVertical:45}} onPress = {function(){props.navigation.navigate("Tutorial")}}>
+			<RoundButton title = "Create"/>
 		</TouchableOpacity>
 	</View>
 };

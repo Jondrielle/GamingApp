@@ -8,14 +8,6 @@ const visibleIcon = "eye";
 const nonVisibleIcon = "eye-with-line";
 const isVisible = "true";
 
-var setPasswordVisibility;
-if(visiblePassword === "eye"){
-    setPasswordVisibility = false;
-} 
-else{
-    setPasswordVisibility = true;
-}
-
 const [visiblePassword, setVisiblePassword] = useState("eye");
 
     return <View style = {styles.viewStyle} >
