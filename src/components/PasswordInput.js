@@ -8,7 +8,7 @@ const visibleIcon = "eye";
 const nonVisibleIcon = "eye-with-line";
 
 const [iconVisible, setIconVisible] = useState("eye");
-const [isVisible,setIsVisible] = useState("true")
+const [isVisible,setIsVisible] = useState(true)
 
 
 const hideShowPassword = () => {
@@ -33,7 +33,7 @@ const hideShowPassword = () => {
                 autoCorrect={false}
                 autoCapitalize= 'none'
             />
-            <TouchableOpacity onPress = { () => {hideShowPassword ()} }>
+            <TouchableOpacity onPress = { () => {hideShowPassword()} }>
                 <Entypo name = {iconVisible} style = {styles.passwordIconStyle}/>
             </TouchableOpacity>
     </View>
