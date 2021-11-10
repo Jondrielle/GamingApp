@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 	//},
 
 	innerBackground:{
-		width:400,
+		width:380,
 		marginTop: 50,
 		height:800,
 		borderRadius: 50,

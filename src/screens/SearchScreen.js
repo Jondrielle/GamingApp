@@ -6,16 +6,17 @@ import GameSpot from "../api/GameSpot";
 const SearchScreen = () => {
 
 const searchApi = async () => {
-    const response = await GameSpot.get('/games/',{
+    const response = await GameSpot.get('/games',{
         params: {
             api_key: '09939eb54cdc38b5856d035d761e671c3b12cb17',
             format: 'json',
-            fields_list: {searchTerm}
+            fields_list: {searchTerm},
+            sort: {searchTerm}
         }
     });
     console.log("Response is: ");
     console.log(response);
-    //setResults(response.data.Flters.Fields);
+    setResults(response.data.results);
 }
 const [searchTerm,setSearchTerm] = useState("");
 const [results,setResults] = useState([]);
