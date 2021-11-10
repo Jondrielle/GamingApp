@@ -4,19 +4,18 @@ import SearchBar from "../components/SearchBar";
 import GameSpot from "../api/GameSpot";
 
 const SearchScreen = () => {
-console.log(results);
 
 const searchApi = async () => {
-try{
-    const response = await GameSpot.get('/games/?api_key=[09939eb54cdc38b5856d035d761e671c3b12cb17]',{
+    const response = await GameSpot.get('/games/',{
         params: {
-            name: searchTerm
+            api_key: '09939eb54cdc38b5856d035d761e671c3b12cb17',
+            format: 'json',
+            fields_list: {searchTerm}
         }
     });
-    setResults(response.data.Fields);
-   }catch(e){
-     console.log(e);
-   }
+    console.log("Response is: ");
+    console.log(response);
+    //setResults(response.data.Flters.Fields);
 }
 const [searchTerm,setSearchTerm] = useState("");
 const [results,setResults] = useState([]);
