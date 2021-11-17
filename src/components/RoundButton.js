@@ -2,7 +2,16 @@ import React from "react";
 import {Text,TouchableOpacity,StyleSheet,View} from "react-native";
 
 const Button = (props) => {
-	return <View style = {styles.buttonStyle}>
+
+	const inLineStyleSheet = {
+		marginTop : props.format,
+		marginBottom : props.format
+	}
+
+	//return <View style = {[styles.buttonStyle, inLineStyleSheet]}> 
+
+	//return <View style = {[styles.buttonStyle,{marginTop:props.format}]}> 
+	return <View style = {[styles.buttonStyle, inLineStyleSheet]}> 
 			<Text style = {styles.buttonText}>{props.title}</Text>
 	</View>
 }
@@ -10,7 +19,6 @@ const Button = (props) => {
 const styles = StyleSheet.create({
 	buttonStyle:{
 		backgroundColor: "#365544",
-		marginTop: 30,
 		alignItems: "center",
 		justifyContent: "center",
 		height: 60,
