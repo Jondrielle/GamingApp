@@ -31,7 +31,8 @@ const SignUpScreen = (props)=>{
 		</View>
 		
 		<TouchableOpacity style = {{marginVertical:45}} onPress = {function(){props.navigation.navigate("Tutorial")}}>
-			<RoundButton title = "Create"/>
+			<RoundButton title = "Create"
+						 format = "30"/>
 		</TouchableOpacity>
 	</View>
 };

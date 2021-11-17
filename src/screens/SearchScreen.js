@@ -1,25 +1,16 @@
-import React, {useState} from "react";
-import {Text, View, StyleSheet} from 'react-native';
+import React, {useState,useEffect} from "react";
+import {Text, View, StyleSheet,Image} from 'react-native';
 import SearchBar from "../components/SearchBar";
 import GameSpot from "../api/GameSpot";
+import useResults from "../hooks/useResults";
+import GameList from "../components/GameList";
 
 const SearchScreen = () => {
 
-const searchApi = async () => {
-    const response = await GameSpot.get('/games',{
-        params: {
-            api_key: '09939eb54cdc38b5856d035d761e671c3b12cb17',
-            format: 'json',
-            fields_list: {searchTerm},
-            sort: {searchTerm}
-        }
-    });
-    console.log("Response is: ");
-    console.log(response);
-    setResults(response.data.results);
-}
 const [searchTerm,setSearchTerm] = useState("");
-const [results,setResults] = useState([]);
+const [results,errorMessage,searchApi] = useResults();
+
+//console.log(results);
 
     return <View style={{alignItems: "center"}}>
         <Text style={{marginTop:60}}></Text>
@@ -29,9 +20,21 @@ const [results,setResults] = useState([]);
             onSearchTermSubmit = { () => {  searchApi(searchTerm) } }
         />
         <Text>Results Found: {results.length}</Text>
+        <GameList results = {results}/>
+        {errorMessage ? <Text>{errorMessage}</Text>: null}
     </View>
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+});
 
 export default SearchScreen;
+
+
+//const filterByGameName = (name) => {
+  //  let myFilteredArray = results.filter( (result) => {
+    //    return result.name === name;
+    //})
+
+    //return myFilteredArray;
+//}
