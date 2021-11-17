@@ -1,75 +1,101 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Image, Text, TextInput, Alert, Pressable, Button, LogBox } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Alert, Text, LogBox } from 'react-native';
 import ResetPasswordDetail from '../components/ResetPasswordDetail';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import IconTextImageDetail from '../components/IconTextImageDetail';
+import LoginButtonDetail from '../components/LoginButtonDetail'
 
 export default function UniqueKeyScreen(props) {
     const [code, setCode] = useState('')
+    const [verifycode, setVerifyCode] = useState('')
 
     const [isCode, verdict] = useState(true)
     const [user, setUser] = useState({})
 
     return (
         <View style={styles.body} >
+            <View style={styles.innerView}>
 
-            <Text style={styles.resetPasswordStyle}>Reset Password</Text>
+                <Text style={styles.resetPasswordStyle}>Code Verification</Text>
+                <IconTextImageDetail title='   code'
+                    image='code'
+                    placeholder='enter code'
+                    viewInput={true}
+                    handler={function (value) {
+                        setCode(value)
+                        verdict(false)
 
-            <ResetPasswordDetail
-                placeholder='Enter your code'
-                passwordHandler={function (value) {
+                    }} />
+                <Text style={styles.errorStyle}>{code.length > 3 ? null : ' code cannot be less than 4 characters'}</Text>
 
-                    setCode(value)
-                    verdict(false)
+                <IconTextImageDetail title='   verify code'
+                    image='code'
+                    placeholder='re-enter code'
+                    viewInput={true}
+                    handler={function (value) {
+                        setVerifyCode(value)
+                        verdict(false)
 
-                }}
-                title='Code         '
-            />
+                    }} />
+                <Text style={styles.errorStyle}>{verifycode === code ? null : ' code mismatch !! try again'}</Text>
+                <Text style ={{marginTop:50}}></Text>
 
-            <TouchableOpacity style = {styles.loginButton}  onPress={async () => {
+                <LoginButtonDetail title='Confirm Code'
+                    handler={async function () {
 
-                try {
+                        if (verifycode === code) {
 
-                    let isValid = true
-                    let count = 1
+                            try {
 
-                    const keys = await AsyncStorage.getAllKeys();
-                    for (const key of keys) {
-                        console.log('user ' + count++);
-                        if (code.length > 0) {
-                            if (code === key) {
-                                verdict(isValid)
+                                let isValid = true
+                                let count = 1
 
-                                const val = await AsyncStorage.getItem(key);
+                                const keys = await AsyncStorage.getAllKeys();
+                                for (const key of keys) {
+                                    console.log('user ' + count++);
+                                    if (code.length > 0) {
+                                        if (code === key) {
+                                            verdict(isValid)
+                                            console.log(key +'line 60');
+                                            console.log(key);
+                                            console.log(typeof key,key,'line 62');
 
-                                setUser(JSON.parse(val))
+                                            const val = await AsyncStorage.getItem(key);
+                                            console.log(val,typeof val,'line 65');
+                                            let newuser = JSON.parse(val)
+                                            console.log(newuser,'line 67');
+                                            setUser(newuser)
+                                            console.log(newuser + 'line 69',typeof newuser);
 
-                                console.log('line 47'+typeof user, user);
+                                            console.log('line 47' + typeof user, user);
 
-                                console.log('item ' + user + " === " + "key " + key + " ? ==" + isValid);
-                                props.navigation.navigate('reset', user)
-                                
-                            }else if(count === keys.length && isCode)
-                                Alert.alert('incorrect code')
-                                console.log('incorrect code');
-                            
+                                            console.log('item ' + user + " === " + "key " + key + " ? ==" + isValid);
+                                            props.navigation.navigate('reset', newuser)
 
+                                        } else if (count === keys.length && isCode)
+                                            Alert.alert('incorrect code')
+                                        console.log('incorrect code');
+
+
+                                    } else {
+                                        Alert.alert('code field cant be empty')
+                                    }
+
+                                }
+
+                            } catch (error) {
+                                console.log(error);
+                            }
                         } else {
-                            Alert.alert('code field cant be empty')
+                            console.log('code does not match');
+                            Alert.alert('code does not match');
                         }
+                    }} />
 
-                    }
-                  
-                } catch (error) {
-                    console.log(error);
-                }
-
-            }} >
-                <Text> ENTER CODE</Text>
-            </TouchableOpacity>
-
-
+            </View >
         </View >
+
     )
 
 }
@@ -78,7 +104,17 @@ const styles = StyleSheet.create({
 
     body: {
         flex: 1,
-        backgroundColor: 'orange'
+        backgroundColor: 'orange',
+        alignItems:'center'
+    },
+    innerView: {
+        height:700,
+        width:350,
+        backgroundColor: 'orange',
+        borderWidth: 5,
+        borderColor:'black',
+        marginTop:30
+
     },
     input: {
         borderWidth: 2,
@@ -112,19 +148,28 @@ const styles = StyleSheet.create({
 
     },
     loginButton: {
-		marginHorizontal: 70,
-		borderColor: "blue",
-		paddingHorizontal: 10,
-		fontSize: 30,
-		fontStyle: "italic",
-		borderColor: "skyblue",
-		borderWidth: 5,
-		borderRadius: 15,
-		width: 250,
-		alignItems: "center",
-        marginTop:50,
-        height:50
-	},
+        marginHorizontal: 70,
+        borderColor: "blue",
+        paddingHorizontal: 10,
+        fontSize: 30,
+        fontStyle: "italic",
+        borderColor: "skyblue",
+        borderWidth: 5,
+        borderRadius: 15,
+        width: 250,
+        alignItems: "center",
+        marginTop: 50,
+        height: 50
+    },
+    errorStyle: {
+        color: 'red',
+        marginLeft: 35
+    },
+    errorStyle2: {
+        color: 'red',
+        marginLeft: 35,
+        marginBottom: 30
+    },
 
 }
 

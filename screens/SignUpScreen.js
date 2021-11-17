@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert, Button } from "react-native";
-import SignUpInfo from "../components/SignUpInfo";
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, Alert, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import IconTextImageDetail from "../components/IconTextImageDetail";
 import TutorialScreen from "../screens/TutorialScreen";
+import LoginButtonDetail from "../components/LoginButtonDetail";
 
 
 let user = {
@@ -91,104 +92,151 @@ const SignUpScreen = (props) => {
 
 		<View style={styles.container}>
 			<Text style={styles.signupStyle}>Sign Up</Text>
-			<SignUpInfo title="Username           "
-				textArea={function (newText) { setUserName(newText); user = { ...user, username: newText } }} />
-			<SignUpInfo title="Email                   "
-				textArea={function (newText) { setEmail(newText); user = { ...user, email: newText } }} />
-			<SignUpInfo title="Password            "
-				textArea={function (newText) { setPassWord(newText); user = { ...user, password: newText } }} />
-			<SignUpInfo title="Verify Password"
-				textArea={function (newText) { setVerifyPassWord(newText) }} />
-			<SignUpInfo title="Enter 4 code       "
-				textArea={function (newText) { setSecuredCode({ ...securedCode, code: newText }); user = { ...user, username: newText } }} />
-			<TouchableOpacity style={styles.loginButton}
-				onPress={function () {
 
-					let isValidUsername = false;
-					let isValidPassword = false;
-					let isValidEmail = false;
-					let isValidCode = false;
+			<IconTextImageDetail title='Code'
+				placeholder='Enter Code'
+				image='code'
+				viewInput={true}
+				handler={function (newText) { setSecuredCode({ ...securedCode, code: newText }); user = { ...user, code: newText } }}
+			/>
 
-					if (securedCode.code.length > 3) {
-						isValidCode = true
+			<Text style={styles.errorStyle}>{securedCode.code.length > 3 ? null : 'code cannot be less than 4 characters'}</Text>
 
-					} else {
-						Alert.alert('code cant be less than 4 characters')
-					}
-					//verifying the email
-					if (verifypassword === password) {
-						//props.navigation.navigate('Welcome')
-						if (password.length > 0) {
-							setPassWord(password)
-							isValidPassword = true
-						} else
-							Alert.alert('password characters must be greater than 0');
+			<IconTextImageDetail title='Username'
+				placeholder='Enter Username'
+				image='user'
+				viewInput={false}
+				handler={function (newText) { setUserName(newText); user = { ...user, username: newText } }}
 
-					} else {
-						Alert.alert('password does not match !! try again');
-					}
+			/>
+			<Text style={styles.errorStyle}>{username.length > 4 ? null : 'username cannot be less than 4 characters'}</Text>
 
-					//verifying the password 
+			<IconTextImageDetail title='Password'
+				placeholder='Enter Password'
+				image='key'
+				viewInput={true}
+				handler={function (newText) { setPassWord(newText); user = { ...user, password: newText } }}
+			/>
+			<Text style={styles.errorStyle}>{password.length > 4 ? null : 'password cannot be less than 4 characters'}</Text>
 
-					if (email !== '') {
-						
-						if (email.length > 0) {
+			<IconTextImageDetail title='Verify Password'
+				placeholder='Enter matching Password'
+				image='key'
+				viewInput={true}
+				handler={function (newText) { setVerifyPassWord(newText) }}
+			/>
+			<Text style={styles.errorStyle}>{verifypassword === password ? null : 'password is not a match'}</Text>
 
-							setEmail(email)
-							isValidEmail = true
+			<IconTextImageDetail title='Email'
+				placeholder='Enter email'
+				image='mail'
+				viewInput={false}
+				handler={function (newText) { setEmail(newText); user = { ...user, email: newText } }}
 
-						} else
-							Alert.alert('email characters must be greater than 0 ');
+			/>
+			<Text style={styles.errorStyle2}>{email.length > 8 ? null : 'code cannot be less than 8 characters'}</Text>
 
-					} else {
-						Alert.alert('email cannot be empty');
-					}
+			<LoginButtonDetail title='Confirm'
+				handler={() => {
+					console.log('hey');
+					{
+						let isValidUsername = false;
+						let isValidPassword = false;
+						let isValidEmail = false;
+						let isValidCode = false;
 
-					// verifying the username
-					if (username !== '') {
+						if (securedCode.code.length > 3) {
 
-						if (username.length > 0) {
-
-							setUserName(username)
-							isValidUsername = true
+							isValidCode = true
 
 						} else {
-							Alert.alert("Username characters must be greater than 0 ")
+							Alert.alert('code cant be less than 4 characters')
+						}
+						//verifying the email
+						if (verifypassword === password) {
+							//props.navigation.navigate('Welcome')
+							if (password.length > 3) {
+								setPassWord(password)
+								isValidPassword = true
+							} else
+								Alert.alert('password characters must be greater than 0');
+
+						} else {
+							Alert.alert('password does not match !! try again');
+						}
+						//verifying the password 
+
+						if (email !== '') {
+
+							if (email.length > 8) {
+
+								setEmail(email)
+								isValidEmail = true
+
+							} else
+								Alert.alert('email characters must be greater than 8 ');
+
+						} else {
+							Alert.alert('email cannot be empty');
 						}
 
-					} else {
-						Alert.alert('Username cannot be empty');
-					}
+						// verifying the username
+						if (username !== '') {
 
-					if ((isValidEmail && isValidPassword && isValidUsername && isValidCode) === true) {
+							if (username.length > 3) {
 
-						if (keyExist()) {
-							console.log(user);
-							setData()
-							console.log(securedCode.code)
-							storageGet(securedCode.code)
-							getAll()
+								setUserName(username)
+								isValidUsername = true
 
-							props.navigation.navigate('Welcome', user)
+							} else {
+								Alert.alert("Username characters must be greater than 0 ")
+							}
 
+						} else {
+							Alert.alert('Username cannot be empty');
+						}
+
+						if ((isValidEmail && isValidPassword && isValidUsername && isValidCode) === true) {
+
+							if (keyExist()) {
+								console.log(user);
+								setData()
+								console.log(securedCode.code)
+								storageGet(securedCode.code)
+								getAll()
+
+								props.navigation.navigate('Welcome', user)
+
+							}
 						}
 					}
 
-				}} >
-				<Text style={styles.confirmText}>Confirm</Text>
+				}} />
 
-			</TouchableOpacity>
-		
+
+			<View style={styles.signUpView}>
+				<Text style={styles.signUpText1}>Do you have an account ?</Text>
+
+				<Pressable onPress={() => {
+
+					props.navigation.navigate('Login')
+				}}>
+					<Text style={styles.signUpText2}>Sign In</Text>
+
+				</Pressable>
+
+			</View>
+
 
 		</View>
 	</View>
+
 };
 
 const styles = StyleSheet.create({
 
 	loginButton: {
 		marginHorizontal: 70,
-		borderColor: "blue",
 		paddingHorizontal: 80,
 		fontSize: 25,
 		fontStyle: "italic",
@@ -197,8 +245,8 @@ const styles = StyleSheet.create({
 		borderRadius: 15,
 		width: 250,
 		alignSelf: "center",
-		height:30,
-		marginTop:100
+		height: 10,
+		marginTop: 25
 
 	},
 
@@ -211,7 +259,7 @@ const styles = StyleSheet.create({
 
 	},
 	confirmStyle: {
-	
+
 		alignSelf: 'center',
 		marginTop: 200,
 		width: 70,
@@ -228,8 +276,8 @@ const styles = StyleSheet.create({
 	innerBackground: {
 		borderWidth: 4,
 		width: 325,
-		marginTop: 110,
-		height: 550,
+		marginTop: 100,
+		height: 450,
 		borderRadius: 5,
 		backgroundColor: 'orange'
 
@@ -241,9 +289,36 @@ const styles = StyleSheet.create({
 	},
 	signupStyle: {
 		alignSelf: 'center',
-		fontSize: 50,
-		marginBottom: 20
-	}
+		fontSize: 40,
+		marginBottom: 10
+	},
+	errorStyle: {
+		color: 'red',
+		marginLeft: 35
+	},
+	errorStyle2: {
+		color: 'red',
+		marginLeft: 35,
+		marginBottom: 30
+	},
+	signUpView: {
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+		marginTop: 40,
+
+
+
+	},
+	signUpText1: {
+		fontSize: 20,
+
+	},
+	signUpText2: {
+		fontSize: 20,
+		fontWeight: 'bold',
+		marginLeft: 10,
+		marginRight: 20
+	},
 
 });
 export default SignUpScreen;
