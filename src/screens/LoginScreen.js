@@ -40,7 +40,8 @@ const LoginScreen = (props)=>{
 
 				<TouchableOpacity onPress={function(){props.navigation.navigate("Tab")}}>
 					<RoundButton title = "Sign In"
-							     format = {30}/>
+							     marginTop = {50}
+								 buttonColor = "#365544"/>
 				</TouchableOpacity>
 
 				{/* Create account prompt*/}
