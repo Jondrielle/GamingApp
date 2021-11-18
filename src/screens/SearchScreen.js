@@ -12,6 +12,14 @@ const [results,errorMessage,searchApi] = useResults();
 
 //console.log(results);
 
+const filterByGameName = (name) => {
+    let myFilteredArray = results.filter( (result) => {
+        return result.name === name;
+    })
+
+    return myFilteredArray;
+}
+
     return <View style={{alignItems: "center"}}>
         <Text style={{marginTop:60}}></Text>
         <SearchBar 

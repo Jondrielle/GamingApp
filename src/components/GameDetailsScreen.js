@@ -1,15 +1,13 @@
 import React from "react";
-import {Text,StyleSheet,Image,View} from "react-native";
-import GameList from "./GameList";
+import {Text,StyleSheet,Image,View,TouchableOpacity} from "react-native";
 
 const GameDetailsScreen = (props) => {
-console.log("Inside of Game Detail");
-console.log(props);
 	return <View>
-		<Image style = {styles.imagePic} source = { { uri: props.result.image.original} }/>
+		<TouchableOpacity onPress = { () =>{} } >
+			<Image style = {styles.imagePic} source = { { uri: props.result.image.original} }/>
+		</TouchableOpacity>
 		<Text style = {styles.title}>{props.result.name}</Text>
 		<Text style = {styles.releaseDate}>{props.result.release_date}</Text>
-		<Text></Text>
 	</View>
 }
 
