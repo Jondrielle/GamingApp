@@ -1,15 +1,18 @@
 import React from "react";
 import {Text,View,StyleSheet,TouchableOpacity} from "react-native";
 
-const TutorialScreen = () =>{
+
+
+const TutorialScreen = (props) =>{
 	return <View style = {styles.panel}>
 		<Text style = {styles.textStyle}> Let's Begin the tutorial</Text>
-		<TouchableOpacity >
+		<TouchableOpacity onPress={()=>{props.navigation.navigate('option')}}>
 			<Text style = {styles.nextButton}>Next</Text>
 		</TouchableOpacity>
 		<TouchableOpacity>
 			<Text style = {styles.skipButton}>Skip</Text>
 		</TouchableOpacity>
+		
 	</View>
 };
 
