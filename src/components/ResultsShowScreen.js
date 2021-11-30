@@ -11,7 +11,7 @@ const ResultsShowScreen = (props) => {
 	//console.log(props);
 	const {addGame} = useContext(Context);
 	return <View>
-		<TouchableOpacity onPress = { () => { props.navigation.navigate("Detail",{id: props.result.images_api_url,name: props.result.name,
+		<TouchableOpacity onPress = { () => { props.navigation.navigate("Detail",{images: props.result.images_api_url,name: props.result.name,
 		date: props.result.release_date, description: props.result.description, genre: props.result.genres}) } } >
 			<Image style = {styles.imagePic} source = { { uri: props.result.image.original} }/>
 		</TouchableOpacity>

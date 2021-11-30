@@ -8,16 +8,31 @@ import {Context} from "../context/GameContext";
 const DetailShowScreen = (props) => {
 //console.log("Inside of game screen");
 	//console.log(props);
+	const [result,setResult] = useState(null);
 	const id = props.navigation.getParam("id");
 	const name = props.navigation.getParam("name");
 	const date = props.navigation.getParam("date");
 	const description = props.navigation.getParam("description");
 	const genre = props.navigation.getParam("genre");
+	const images = props.navigation.getParam("images");
 
+	console.log(result);
+	const getImages = async (images) => {
+		const response = await GameSpot.get('/${images}',{
+			params:{
+				api_key: '09939eb54cdc38b5856d035d761e671c3b12cb17',
+                format: 'json',
+			}
+		});
+		setResult(response.data);
+	} 
+
+	useEffect( () => {getImages(images)}, [] );
 	return <View>
+		<Text>{images}</Text>
 		<Text style = {styles.name}>{name}</Text>
 		<Text style = {styles.date}>{date}</Text>
-		<Text style = {style.description}>{description}</Text>
+		<Text style = {styles.description}>{description}</Text>
 		<FlatList
 			data = {genre}
 			keyExtractor = { (genre) => {return genre.name} }
