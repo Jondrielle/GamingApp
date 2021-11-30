@@ -1,7 +1,10 @@
-import {useState,useEffect} from "react";
+import {useState,useEffect,useContext} from "react";
 import GameSpot from "../api/GameSpot";
+import {Context} from "../context/GameContext";
 
 export default () => {
+
+const {addGame,state} = useContext(Context);
 
 const [results,setResults] = useState([]);
 const [errorMessage,setErrorMessage] = useState("");
@@ -14,10 +17,11 @@ const [errorMessage,setErrorMessage] = useState("");
                 params: {
                     api_key: '09939eb54cdc38b5856d035d761e671c3b12cb17',
                     format: 'json',
-                    limit:5,
+                    limit:2,
                     filter: "name:" + searchTerm
                 }
             });
+            addGame(response.data.results);
             setResults(response.data.results);
             setErrorMessage("");
         }catch(e){

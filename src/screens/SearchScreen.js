@@ -1,12 +1,15 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect,useContext} from "react";
 import {Text, View, StyleSheet,Image} from 'react-native';
 import SearchBar from "../components/SearchBar";
 import GameSpot from "../api/GameSpot";
 import useResults from "../hooks/useResults";
 import GameList from "../components/GameList";
+import {Context} from "../context/GameContext";
+import DetailShowScreen from "../screens/DetailShowScreen";
 
 const SearchScreen = () => {
 
+const {state,addGame} = useContext(Context);
 const [searchTerm,setSearchTerm] = useState("");
 const [results,errorMessage,searchApi] = useResults();
 
