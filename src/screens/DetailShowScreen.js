@@ -1,8 +1,10 @@
 import React,{useState,useEffect,useContext} from "react";
-import {Text,StyleSheet,View,Image,FlatList} from "react-native";
+import {Text,StyleSheet,View,Image,FlatList,TouchableOpacity} from "react-native";
+import TabNavigationRoutes from "../components/TabNavigationRoutes";
 import GameSpot from "../api/GameSpot";
 import ResultsShowScreen from "../components/ResultsShowScreen";
 import {Context} from "../context/GameContext";
+import {EvilIcons} from "@expo/vector-icons";
 
 
 const DetailShowScreen = (props) => {
@@ -11,17 +13,19 @@ const DetailShowScreen = (props) => {
 	const [result,setResult] = useState(null);
 	const id = props.navigation.getParam("id");
 	const name = props.navigation.getParam("name");
+	const image = props.navigation.getParam("image");
 	const date = props.navigation.getParam("date");
 	const description = props.navigation.getParam("description");
 	const genre = props.navigation.getParam("genre");
 	const images = props.navigation.getParam("images");
-
-	console.log(result);
+	const {state,addGame} = useContext(Context);
+	//console.log(result);
 	const getImages = async (images) => {
-		const response = await GameSpot.get('/${images}',{
+		const response = await GameSpot.get('/images',{
 			params:{
 				api_key: '09939eb54cdc38b5856d035d761e671c3b12cb17',
                 format: 'json',
+				filter: "association: " + {images}
 			}
 		});
 		setResult(response.data);
@@ -29,15 +33,19 @@ const DetailShowScreen = (props) => {
 
 	useEffect( () => {getImages(images)}, [] );
 	return <View>
-		<Text>{images}</Text>
+		<TouchableOpacity onPress = { () => {addGame(id,image,name,date); props.navigation.navigate("Tab")} }>
+			<EvilIcons style = {styles.saveIcon} name = "heart"/>
+		</TouchableOpacity>
 		<Text style = {styles.name}>{name}</Text>
+		<View>
+			<FlatList
+				data = {genre}
+				keyExtractor = { (genre) => {return genre.name} }
+				renderItem = { ({item}) => {return <Text style = {styles.genreList}>{item.name}</Text>} }
+			/>
+		</View>
 		<Text style = {styles.date}>{date}</Text>
 		<Text style = {styles.description}>{description}</Text>
-		<FlatList
-			data = {genre}
-			keyExtractor = { (genre) => {return genre.name} }
-			renderItem = { ({item}) => {return <Text>{item.name} |</Text>} }
-		/>
 	</View>
 }
 
@@ -59,12 +67,33 @@ const styles = StyleSheet.create({
         marginTop:30,
         marginLeft:45
 	},
-	releaseDate:{
+	date:{
 		alignSelf:"flex-start",
         marginTop:15,
-        marginLeft:45,
-        fontSize:20
+        fontSize:20,
+		marginTop:15,
+		fontWeight:"bold"
 	},
+	genreList:{
+		flexDirection:"column",
+		fontSize:20,
+		marginTop:3,
+		marginBottom:5,
+		fontWeight:"bold"
+	},
+	name:{
+		fontSize:20,
+		fontStyle:"italic",
+		alignSelf:"center",
+		marginBottom:10
+	},
+	description:{
+		fontSize:17,
+		marginTop:10
+	},
+	saveIcon:{
+		fontSize:35,
+	}
 });
 
 export default DetailShowScreen;

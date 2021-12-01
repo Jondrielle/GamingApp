@@ -9,7 +9,7 @@ const gameReducer = (state, action) => {
         case 'add_game':
             return [...state,{ 
                     id: action.payload.id,
-                    images_api_url: action.payload.images_api_url,
+                    image: action.payload.image,
                     name: action.payload.name,
                     release_date: action.payload.release_date
                    // releases_api_url: action.payload.releases_api_url,
@@ -51,8 +51,8 @@ const gameReducer = (state, action) => {
 //}
 
 const addGame= (dispatch) => {
-    return (id,images_api_url,name,release_date) => {
-        dispatch( {type: "add_game", payload: {id,images_api_url,name,release_date} } )
+    return (id,image,name,release_date) => {
+        dispatch( {type: "add_game", payload: {id,image,name,release_date} } )
     }
 }
 

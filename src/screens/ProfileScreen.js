@@ -1,63 +1,128 @@
-import React,{useState} from "react";
-import {Text, View, StyleSheet,TouchableOpacity,ScrollView,TextInput} from 'react-native';
-import RoundButton from "../components/RoundButton";
-import EditProfileScreen from "./EditProfileScreen";
-import {FontAwesome5,MaterialIcons} from "@expo/vector-icons";
+import React, { useEffect, useState } from "react";
+import { Text, Image, StyleSheet, View, TouchableOpacity, Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Video } from "expo-av";
 
-const ProfileScreen = ({navigation}) => {
-    //const [optionChoice, setOptionChoice] = useState([]);
-    return <View>
-        <ScrollView>
-            <View style = {{padding:10, width:'100%',backgroundColor:"green",height:200}}></View>
-                <View style = {styles.profileImage}>
-                <TouchableOpacity onPress = { () => {navigation.navigate("EditScreen")} }>
-                    <FontAwesome5 name = "edit" style = {styles.iconStyle}/>
-                </TouchableOpacity>
-                </View>
-            <Text style = {styles.userName}>Regis</Text>
-            <TouchableOpacity>
-                <View>
-                    <RoundButton marginTop = {300} buttonColor = "darkgreen" title = "Logout"
-                    iconName = {<MaterialIcons style = {styles.iconStyle} name = "logout"/>}/>
-                </View>
-            </TouchableOpacity>
-        </ScrollView>
-    </View>
+const removeKey = async function (key) {
+	try {
+		await AsyncStorage.removeItem(key);
+		return true;
+	}
+	catch (exception) {
+		return false;
+	}
+}
+
+const UserScreen = (props) => {
+	const [password, setPassWord] = useState('');
+	const [verifyPassword, setVerifyPassWord] = useState('');
+	const [code, setCode] = useState('')
+	let user = {
+		email: '',
+		password: '',
+		username: ''
+	}
+
+	let newcode = props.navigation.getParam('code');
+	let newemail = props.navigation.getParam('email')
+	let newusername = props.navigation.getParam('username')
+	let newpassword = props.navigation.getParam('password')
+
+	user = {
+		email: newemail,
+		password: newpassword,
+		username: newusername,
+		code: newcode
+	}
+
+	return <View style={styles.background} >
+		<View style={styles.circleShape}>
+			<Video
+				style={styles.icon}
+				source={require('../../assets/logo/GameNet2.mp4')}
+				isLooping={true}
+				//useNativeControls
+				resizeMode="contain"
+				shouldPlay
+			/>
+
+		</View>
+		<View />
+		<Text style={styles.welcomeText}></Text>
+		<View>
+			<TouchableOpacity onPress = { () => {props.navigation.navigate("Tab")} }>
+				<Text>Start Tutorial</Text>
+			</TouchableOpacity>
+			<TouchableOpacity onPress={async function () {
+
+				removeKey('LoggedOn')
+				removeKey('CurrentUserKey')
+				removeKey('CurrentUser')
+
+				props.navigation.navigate("Welcome")
+			}}>
+				<Text style={styles.logoutButton}>Logout</Text>
+			</TouchableOpacity>
+		</View>
+
+	</View>
 }
 
 const styles = StyleSheet.create({
-    background:{
-        alignItems:"center"
-    },
-    profileImage: {
-        height:150,
-        width:150,
-        borderRadius:100,
-        backgroundColor:"gray",
-        marginTop:-80,
-        alignSelf:"center"
-    },
-    addPhoto: {
-           alignSelf:"center",
-           marginVertical:-200,
-           fontSize: 15,
-           textShadowOffset: {width:2,height:2},
-           textShadowColor: "green",
-           textShadowRadius: 5,
-    },
-    userName:{
-        fontSize:25,
-        fontWeight:"bold",
-        alignSelf:"center",
-        padding:10
-    },
-    iconStyle:{
-        fontSize:25,
-        padding:20,
-        position:"absolute",
-        alignSelf:"flex-end"
-    }
+	background: {
+		backgroundColor:"#1B322D",
+		height: 800,
+		alignItems: "stretch"
+	},
+	logoutButton: {
+		marginHorizontal: 70,
+        fontSize: 25,
+        fontStyle: "italic",
+        borderWidth: 5,
+        borderRadius: 15,
+        width: 250,
+		paddingLeft:90,
+		paddingTop:2,
+        justifyContent:'center',
+        height: 50,
+        marginTop: 5,
+        backgroundColor:'yellow',
+		alignItems:'center',
+	},
+	signUpButton: {
+		fontSize: 20,
+		marginVertical: 145,
+		borderWidth: 2,
+		borderColor: "purple",
+		padding: 10,
+		borderRadius: 9
+	},
+	welcomeText: {
+		fontSize: 45,
+		fontStyle: "italic",
+		margin: 50,
+		marginLeft: 100,
+		color:'skyblue'
+	},
+	
+	circleShape: {
+		width: 200,
+		height: 200,
+		borderRadius: 200 / 2,
+		backgroundColor: "blue",
+		marginLeft: 100,
+		justifyContent: 'center',
+		marginTop: 150,
+		borderWidth: 5,
+		borderColor: "blue"
+	},
+	icon: {
+		width: 190,
+		height: 190,
+		borderRadius: 190 / 2,
+		alignSelf: 'center'
 
+	}
 });
 
-export default ProfileScreen;
+export default UserScreen;
