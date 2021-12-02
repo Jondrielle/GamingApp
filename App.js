@@ -9,7 +9,6 @@ import SplashScreen from "./src/screens/SplashScreen";
 import EditProfileScreen from "./src/screens/EditProfileScreen";
 import TabNavigationRoutes from "./src/components/TabNavigationRoutes";
 import {Provider as GameProvider} from "./src/context/GameContext";
-import DetailShowScreen from "./src/screens/DetailShowScreen";
 import ResultsShowScreen from "./src/components/ResultsShowScreen";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
 import ResetPasswordScreen from "./src/screens/ResetPasswordScreen";
@@ -23,7 +22,7 @@ import IndexScreen from "./src/screens/IndexScreen";
 const AuthStack = createStackNavigator({
 	Welcome: WelcomeScreen,
 	//Game:GameShowScreen,
-	Detail: DetailShowScreen,
+	
 	Results:ResultsShowScreen,
 	reset:ResetPasswordScreen,
     user:UserScreen,

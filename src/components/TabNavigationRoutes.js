@@ -1,11 +1,24 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {createStackNavigator} from "react-navigation-stack";
 import SavedGamesScreen from "../screens/SavedGamesScreen";
 import SearchScreen from "../screens/SearchScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SettingsScreen from "../screens/SettingsScreen";
+import DetailShowScreen from "../screens/DetailShowScreen";
 import { Ionicons, Entypo, Octicons } from '@expo/vector-icons';
 
+const SearchScreens = createStackNavigator({
+    Search: {
+        screen: SearchScreen,
+        navigationOptions: {
+			headerShown: false
+		}
+    },
+    Detail: {
+        screen: DetailShowScreen, 
+    }
+})
 
 const TabNavigationRoutes = createBottomTabNavigator({
     SavedGames: {
@@ -18,7 +31,7 @@ const TabNavigationRoutes = createBottomTabNavigator({
         }
     },
     Search: {
-        screen: SearchScreen,
+        screen: SearchScreens,
         navigationOptions: {
             tabBarIcon: () => {
                 const iconName= "magnifying-glass"

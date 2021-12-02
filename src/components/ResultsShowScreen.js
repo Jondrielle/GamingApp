@@ -13,9 +13,12 @@ const ResultsShowScreen = (props) => {
 	console.log(props.result.image.original);
 	//console.log("Inside of Results Show Screen");
 	//console.log(props);
+	
 	return <View>
-		<TouchableOpacity onPress = { () => { props.navigation.navigate("Detail",{id: props.result.id, image:props.result.image.original, images: props.result.images_api_url,name: props.result.name,
-		date: props.result.release_date, description: props.result.description, genre: props.result.genres}) } } >
+		<TouchableOpacity onPress = { () => { 
+			props.navigation.navigate("Detail",{id: props.result.id, image:props.result.image.original, images: props.result.images_api_url,name: props.result.name,
+				date: props.result.release_date, description: props.result.description, genre: props.result.genres})
+		 } } >
 			<Image style = {styles.imagePic} source = { { uri: props.result.image.original} }/>
 		</TouchableOpacity>
 		<Text style = {styles.title}>{props.result.name}</Text>
