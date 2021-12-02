@@ -65,55 +65,37 @@ const LoginScreen = (props) => {
 
 
 	return <View style={styles.background}>
-		<View style={styles.innerBackground}>
-		<View style={styles.circleShape}>
+			<View style={styles.innerBackground}>
 
-
-<Video
-
-	style={styles.circleicon}
-	source={require('../../assets/logo/GameNet2.mp4')}
-	isLooping ={true}
-	//useNativeControls
-	resizeMode="contain"
-	shouldPlay
-
-
-/>
-</View>
 			<Text style={styles.signinStyle}>Sign In</Text>
 
-			<IconTextImageDetail title='Code'
-				placeholder='Enter Code'
-				image='code'
-				viewInput={true}
-				handler={function (newText) {
-
-					setCode(newText),
+			<View style={styles.inputStyle}>
+				<IconTextImageDetail title='Code'
+					placeholder='Enter Code'
+					image='code'
+					viewInput={true}
+					handler={function (newText) {
+						setCode(newText),
 						verdict(isValidCode(newText))
-
-				}} />
-				<Text></Text>
-			<IconTextImageDetail title='Username'
-				placeholder='Enter Username'
-				image='user'
-				viewInput={false}
-				handler={function (newText) {
-
-					setUserName(newText)
-
-				}}
-			/>
-			<Text></Text>
-
-			<IconTextImageDetail title='Password'
-				placeholder='Enter Password'
-				image='key'
-				viewInput={true}
-				handler={function (newText) {
-
-					setPassWord(newText)
-				}} />
+					}}
+				/>
+				<IconTextImageDetail title='Username'
+					placeholder='Enter Username'
+					image='user'
+					viewInput={false}
+					handler={function (newText) {
+						setUserName(newText)
+					}}
+				/>
+				<IconTextImageDetail title='Password'
+					placeholder='Enter Password'
+					image='key'
+					viewInput={true}
+					handler={function (newText) {
+						setPassWord(newText)
+					}}
+				/>
+			</View>
 
 
 			<View style={styles.buttonsView}>
@@ -185,13 +167,21 @@ const LoginScreen = (props) => {
 
 			</View>
 		</View>
+		<Video
+			style={styles.circleicon}
+			source={require('../../assets/logo/GameNet2.mp4')}
+			isLooping ={true}
+			//useNativeControls
+			resizeMode="contain"
+			shouldPlay
+		/>
 	</View>
 };
 
 const styles = StyleSheet.create({
 	background: {
-		backgroundColor: '#1B322D',
-		flex: 1
+		backgroundColor: "#b7eecf",//Green: #1B322D Blue: #0c7078 LightGreen: #f5fffa
+		flex: 1,
 
 	},
 	innerBackground: {
@@ -201,9 +191,9 @@ const styles = StyleSheet.create({
 		height:710,
 		marginTop: 50,
 		borderRadius: 5,
-		backgroundColor: '#1B322D',
+		backgroundColor: '#b7eecf',//#1B322D
 		borderWidth:5,
-		borderColor:'#1B322D'
+		borderColor:"#b7eecf"
 
 	},
 	
@@ -261,8 +251,8 @@ const styles = StyleSheet.create({
 	},
 	signUpText1: {
 		fontSize: 20,
-		color:'skyblue',
-		marginBottom:100
+		color:'black',
+		marginBottom:100,
 
 	},
 	signUpText2: {
@@ -270,11 +260,11 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		marginLeft: 10,
 		marginRight: 20,
-		color:'#3063a0',
+		color:'#dc143c',
 
 	},
 	buttonsView: {
-		marginTop: 40
+		marginTop: 40,
 	},
 	circlebackground: {
 		backgroundColor: "#1B322D"
@@ -296,20 +286,26 @@ const styles = StyleSheet.create({
 
 	},
 	circleicon: {
-		width: 50,
-		height: 50,
-		borderRadius: 50 / 2,
+		width: 100,
+		height: 100,
+		borderRadius: 100 / 2,
 		alignSelf: 'center',
-        justifyContent:'center'
-
+        justifyContent:'center',
+		position: "absolute",
+		marginTop: 700
 	},
 	
 	signinStyle: {
 		alignSelf: 'center',
 		fontSize: 40,
 		marginBottom: 12,
-		color:'skyblue'
+		color:'black',
 
+	},
+	inputStyle: {
+		//borderWidth: 3,
+		height: 355, 
+		justifyContent: "space-evenly", 
 	}
 
 

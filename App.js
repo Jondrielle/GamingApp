@@ -27,8 +27,18 @@ const AuthStack = createStackNavigator({
 	Results:ResultsShowScreen,
 	reset:ResetPasswordScreen,
     user:UserScreen,
-    unique:UniqueKeyScreen,
-	option:TutorialOptionScreen,
+    unique:{
+		screen: UniqueKeyScreen,
+		navigationOptions: {
+			title: "Veirfy your code"
+		}
+	},
+	option:{
+		screen: TutorialOptionScreen,
+		navigationOptions: {
+			title: "Tutorials"
+		}
+	},
     player:VideoPlayerScreen,
 	index:IndexScreen,
     Tutorial: TutorialScreen,

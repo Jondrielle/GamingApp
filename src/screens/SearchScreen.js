@@ -1,13 +1,14 @@
 import React, {useState,useEffect,useContext} from "react";
-import {Text, View, StyleSheet,Image} from 'react-native';
+import {Text, View, StyleSheet,Image, FlatList, TouchableOpacity} from 'react-native';
 import SearchBar from "../components/SearchBar";
 import GameSpot from "../api/GameSpot";
 import useResults from "../hooks/useResults";
 import GameList from "../components/GameList";
 import {Context} from "../context/GameContext";
 import DetailShowScreen from "../screens/DetailShowScreen";
+import ResultsShowScreen from "../components/ResultsShowScreen";
 
-const SearchScreen = () => {
+const SearchScreen = (props) => {
 
 const {state,addGame} = useContext(Context);
 const [searchTerm,setSearchTerm] = useState("");
@@ -31,7 +32,18 @@ const filterByGameName = (name) => {
             onSearchTermSubmit = { () => {  searchApi(searchTerm) } }
         />
         <Text>Results Found: {results.length}</Text>
-        <GameList results = {results}/>
+        
+        <FlatList
+			horizontal = {true}
+            data = {results}
+			keyExtractor = { (result) => {return result.id}}
+			renderItem = { ({item}) => {
+			return <View>
+				<TouchableOpacity onPress = { () => {props.navigation.navigate("Results", {id:item.id} )} }>
+					<ResultsShowScreen result = {item}/>
+				</TouchableOpacity>
+				</View> } }
+			/>
         {errorMessage ? <Text>{errorMessage}</Text>: null}
     </View>
 }

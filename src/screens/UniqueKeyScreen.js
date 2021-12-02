@@ -21,22 +21,6 @@ export default function UniqueKeyScreen(props) {
     return (
         <View style={styles.body} >
             <View style={styles.innerView}>
-            <View style={styles.circleShape}>
-
-
-<Video
-
-	style={styles.circleicon}
-	source={require('../../assets/logo/GameNet2.mp4')}
-	isLooping ={true}
-	//useNativeControls
-	resizeMode="contain"
-	shouldPlay
-
-
-/>
-</View>
-
                 <Text style={{marginTop:30}}></Text>
                 <Text style={styles.resetPasswordStyle}>Code Verification</Text>
                 <IconTextImageDetail title='   code'
@@ -113,36 +97,42 @@ export default function UniqueKeyScreen(props) {
                         }
                     }} />
                     
-			<View style={styles.signUpView}>
-				<Text style={styles.signUpText1}>needing help ?</Text>
+                <View style={styles.signUpView}>
+                    <Text style={styles.signUpText1}>needing help ?</Text>
 
-				<Pressable onPress={() => {
+                    <Pressable onPress={() => {
 
-					props.navigation.navigate('option',screenNavigation)
-				}}>
-					<Text style={styles.signUpText2}>Watch tutorials</Text>
+                        props.navigation.navigate('option',screenNavigation)
+                    }}>
+                        <Text style={styles.signUpText2}>Watch tutorials</Text>
 
-				</Pressable>
-            </View>
+                    </Pressable>
+                </View>
 
             </View >
+            <Video
+                style={styles.circleicon}
+                source={require('../../assets/logo/GameNet2.mp4')}
+                isLooping ={true}
+                //useNativeControls
+                resizeMode="contain"
+                shouldPlay
+            />
         </View >
-
     )
-
 }
 
 const styles = StyleSheet.create({
 
     body: {
         flex: 1,
-		backgroundColor: '#1B322D',
-		alignItems:'center'
+		backgroundColor: '#b7eecf',
+		alignItems:'center',
     },
     innerView: {
         flex: 1,
-		backgroundColor: '#1B322D',
-		borderColor: '#1B322D',
+		backgroundColor: '#b7eecf',
+		borderColor: '#b7eecf',
 		margin: 3,
 		borderWidth: 4,
 		width:350
@@ -174,7 +164,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
 		fontSize: 40,
 		marginBottom: 10,
-		color:'skyblue'
+		color:'black'
     },
 
     saveTextStyle: {
@@ -212,11 +202,13 @@ const styles = StyleSheet.create({
 
 	},
 	circleicon: {
-		width: 50,
-		height: 50,
-		borderRadius: 50 / 2,
+		width: 100,
+		height: 100,
+		borderRadius: 100 / 2,
 		alignSelf: 'center',
-        justifyContent:'center'
+        justifyContent:'center',
+		position: "absolute",
+		marginTop: 600
 
 	},
 		
@@ -243,7 +235,7 @@ const styles = StyleSheet.create({
 	},
 	signUpText1: {
 		fontSize: 20,
-		color:'skyblue',
+		color:'black',
         marginLeft:20
 
 	},
@@ -252,7 +244,7 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		marginLeft: 10,
 		marginRight: 35,
-		color:'#3063a0',
+		color:'#b8860b',
 	}
 
 

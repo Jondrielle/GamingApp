@@ -45,14 +45,14 @@ const styles = StyleSheet.create({
         marginHorizontal: 70,
         fontSize: 25,
         fontStyle: "italic",
-        borderWidth: 1,
+        borderWidth: 3,
         borderRadius: 15,
         width: 300,
         alignSelf: "center",
         justifyContent:'center',
         height: 50,
         marginTop: 5,
-        backgroundColor:'yellow'
+        backgroundColor:'#4169e1'
 
     },
     

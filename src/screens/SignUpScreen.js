@@ -94,164 +94,156 @@ const SignUpScreen = (props) => {
 	}
 
 	return <View style={styles.background}>
+			<View style={styles.container}>
 
-		<View style={styles.container}>
-		<View style={styles.circleShape}>
+				<Text style={styles.signupStyle}>Sign Up</Text>
 
+				<IconTextImageDetail title='Code'
+					placeholder='Enter Code'
+					image='code'
+					viewInput={true}
+					handler={function (newText) { setSecuredCode({ ...securedCode, code: newText }); user = { ...user, code: newText } }}
+				/>
 
-<Video
+				<Text style={styles.errorStyle}>{securedCode.code.length > 3 ? null : 'code cannot be less than 4 characters'}</Text>
 
-	style={styles.circleicon}
-	source={require('../../assets/logo/GameNet2.mp4')}
-	isLooping ={true}
-	//useNativeControls
-	resizeMode="contain"
-	shouldPlay
+				<IconTextImageDetail title='Username'
+					placeholder='Enter Username'
+					image='user'
+					viewInput={false}
+					handler={function (newText) { setUserName(newText); user = { ...user, username: newText } }}
 
+				/>
+				<Text style={styles.errorStyle}>{username.length > 4 ? null : 'username cannot be less than 4 characters'}</Text>
 
-/>
-</View>
-			<Text style={styles.signupStyle}>Sign Up</Text>
+				<IconTextImageDetail title='Password'
+					placeholder='Enter Password'
+					image='key'
+					viewInput={true}
+					handler={function (newText) { setPassWord(newText); user = { ...user, password: newText } }}
+				/>
+				<Text style={styles.errorStyle}>{password.length > 4 ? null : 'password cannot be less than 4 characters'}</Text>
 
-			<IconTextImageDetail title='Code'
-				placeholder='Enter Code'
-				image='code'
-				viewInput={true}
-				handler={function (newText) { setSecuredCode({ ...securedCode, code: newText }); user = { ...user, code: newText } }}
-			/>
+				<IconTextImageDetail title='Verify Password'
+					placeholder='Enter matching Password'
+					image='key'
+					viewInput={true}
+					handler={function (newText) { setVerifyPassWord(newText) }}
+				/>
+				<Text style={styles.errorStyle}>{verifypassword === password ? null : 'password is not a match'}</Text>
 
-			<Text style={styles.errorStyle}>{securedCode.code.length > 3 ? null : 'code cannot be less than 4 characters'}</Text>
+				<IconTextImageDetail title='Email'
+					placeholder='Enter email'
+					image='mail'
+					viewInput={false}
+					handler={function (newText) { setEmail(newText); user = { ...user, email: newText } }}
 
-			<IconTextImageDetail title='Username'
-				placeholder='Enter Username'
-				image='user'
-				viewInput={false}
-				handler={function (newText) { setUserName(newText); user = { ...user, username: newText } }}
-
-			/>
-			<Text style={styles.errorStyle}>{username.length > 4 ? null : 'username cannot be less than 4 characters'}</Text>
-
-			<IconTextImageDetail title='Password'
-				placeholder='Enter Password'
-				image='key'
-				viewInput={true}
-				handler={function (newText) { setPassWord(newText); user = { ...user, password: newText } }}
-			/>
-			<Text style={styles.errorStyle}>{password.length > 4 ? null : 'password cannot be less than 4 characters'}</Text>
-
-			<IconTextImageDetail title='Verify Password'
-				placeholder='Enter matching Password'
-				image='key'
-				viewInput={true}
-				handler={function (newText) { setVerifyPassWord(newText) }}
-			/>
-			<Text style={styles.errorStyle}>{verifypassword === password ? null : 'password is not a match'}</Text>
-
-			<IconTextImageDetail title='Email'
-				placeholder='Enter email'
-				image='mail'
-				viewInput={false}
-				handler={function (newText) { setEmail(newText); user = { ...user, email: newText } }}
-
-			/>
-			<Text style={styles.errorStyle2}>{email.length > 8 ? null : 'code cannot be less than 8 characters'}</Text>
+				/>
+				<Text style={styles.errorStyle2}>{email.length > 8 ? null : 'code cannot be less than 8 characters'}</Text>
 			
 
-			<LoginButtonDetail 
-				colorChange ={true}
-				title='Confirm'
-				handler={() => {
-					console.log('hey');
-					{
-						let isValidUsername = false;
-						let isValidPassword = false;
-						let isValidEmail = false;
-						let isValidCode = false;
+				<LoginButtonDetail 
+					colorChange ={true}
+					title='Confirm'
+					handler={() => {
+						console.log('hey');
+						{
+							let isValidUsername = false;
+							let isValidPassword = false;
+							let isValidEmail = false;
+							let isValidCode = false;
 
-						if (securedCode.code.length > 3) {
+							if (securedCode.code.length > 3) {
 
-							isValidCode = true
-
-						} else {
-							Alert.alert('code cant be less than 4 characters')
-						}
-						//verifying the email
-						if (verifypassword === password) {
-							//props.navigation.navigate('Welcome')
-							if (password.length > 3) {
-								setPassWord(password)
-								isValidPassword = true
-							} else
-								Alert.alert('password characters must be greater than 0');
-
-						} else {
-							Alert.alert('password does not match !! try again');
-						}
-						//verifying the password 
-
-						if (email !== '') {
-
-							if (email.length > 8) {
-
-								setEmail(email)
-								isValidEmail = true
-
-							} else
-								Alert.alert('email characters must be greater than 8 ');
-
-						} else {
-							Alert.alert('email cannot be empty');
-						}
-
-						// verifying the username
-						if (username !== '') {
-
-							if (username.length > 3) {
-
-								setUserName(username)
-								isValidUsername = true
+								isValidCode = true
 
 							} else {
-								Alert.alert("Username characters must be greater than 0 ")
+								Alert.alert('code cant be less than 4 characters')
+							}
+							//verifying the email
+							if (verifypassword === password) {
+								//props.navigation.navigate('Welcome')
+								if (password.length > 3) {
+									setPassWord(password)
+									isValidPassword = true
+								} else
+									Alert.alert('password characters must be greater than 0');
+
+							} else {
+								Alert.alert('password does not match !! try again');
+							}
+							//verifying the password 
+
+							if (email !== '') {
+
+								if (email.length > 8) {
+
+									setEmail(email)
+									isValidEmail = true
+
+								} else
+									Alert.alert('email characters must be greater than 8 ');
+
+							} else {
+								Alert.alert('email cannot be empty');
 							}
 
-						} else {
-							Alert.alert('Username cannot be empty');
-						}
+							// verifying the username
+							if (username !== '') {
 
-						if ((isValidEmail && isValidPassword && isValidUsername && isValidCode) === true) {
+								if (username.length > 3) {
 
-							if (keyExist()) {
-								console.log(user);
-								setData()
-								console.log(securedCode.code)
-								storageGet(securedCode.code)
-								getAll()
+									setUserName(username)
+									isValidUsername = true
 
-								props.navigation.navigate('Welcome', user)
+								} else {
+									Alert.alert("Username characters must be greater than 0 ")
+								}
 
+							} else {
+								Alert.alert('Username cannot be empty');
+							}
+
+							if ((isValidEmail && isValidPassword && isValidUsername && isValidCode) === true) {
+
+								if (keyExist()) {
+									console.log(user);
+									setData()
+									console.log(securedCode.code)
+									storageGet(securedCode.code)
+									getAll()
+
+									props.navigation.navigate('Welcome', user)
+
+								}
 							}
 						}
-					}
 
-				}} />
+					}} 
+				/>
+				<View style={styles.signUpView}>
+					<Text style={styles.signUpText1}>Already have an account ?</Text>
 
+					<Pressable onPress={() => {
 
-			<View style={styles.signUpView}>
-				<Text style={styles.signUpText1}>Already have an account ?</Text>
+						props.navigation.navigate('Login')
+					}}>
+						<Text style={styles.signUpText2}>Sign In</Text>
 
-				<Pressable onPress={() => {
+					</Pressable>
 
-					props.navigation.navigate('Login')
-				}}>
-					<Text style={styles.signUpText2}>Sign In</Text>
-
-				</Pressable>
-
-			</View>
+				</View>
 
 
 		</View>
+		<Video
+			style={styles.circleicon}
+			source={require('../../assets/logo/GameNet2.mp4')}
+			isLooping ={true}
+			//useNativeControls
+			resizeMode="contain"
+			shouldPlay
+		/>
 	</View>
 
 };
@@ -275,11 +267,12 @@ const styles = StyleSheet.create({
 
 	container: {
 		flex: 1,
-		backgroundColor: '#1B322D',
-		borderColor: '#1B322D',
+		backgroundColor: '#b7eecf',
+		borderColor: '#b7eecf',
 		margin: 3,
 		borderWidth: 4,
-		width:350
+		width:350,
+		paddingTop: 50
 
 	},
 	confirmStyle: {
@@ -309,14 +302,14 @@ const styles = StyleSheet.create({
 
 	background: {
 		flex: 1,
-		backgroundColor: '#1B322D',
+		backgroundColor: '#b7eecf',
 		alignItems:'center'
 	},
 	signupStyle: {
 		alignSelf: 'center',
 		fontSize: 40,
 		marginBottom: 10,
-		color:'skyblue'
+		color:'black'
 
 	},
 	errorStyle: {
@@ -368,12 +361,13 @@ const styles = StyleSheet.create({
 
 	},
 	circleicon: {
-		width: 50,
-		height: 50,
-		borderRadius: 50 / 2,
+		width: 100,
+		height: 100,
+		borderRadius: 100 / 2,
 		alignSelf: 'center',
-        justifyContent:'center'
-
+        justifyContent:'center',
+		position: "absolute",
+		marginTop: 700
 	}
 
 });

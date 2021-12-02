@@ -50,14 +50,18 @@ const styles = StyleSheet.create({
         marginHorizontal: 70,
         fontSize: 25,
         fontStyle: "italic",
-        borderWidth: 5,
+        borderWidth: 3,
         borderRadius: 15,
         width: 300,
         alignSelf: "center",
         justifyContent:'center',
         height: 50,
         marginTop: 5,
-        backgroundColor:'purple'
+        backgroundColor: 'lightgrey',
+        elevation: 5,
+        shadowColor: "black",
+        shadowRadius: 2,
+        shadowOpacity: 1,
 
     },
     innerView2: {
@@ -65,14 +69,18 @@ const styles = StyleSheet.create({
         marginHorizontal: 70,
         fontSize: 25,
         fontStyle: "italic",
-        borderWidth: 5,
+        borderWidth: 2,
         borderRadius: 15,
         width: 300,
         alignSelf: "center",
         justifyContent:'center',
         height: 50,
         marginTop: 5,
-        backgroundColor:'yellow'
+        backgroundColor:'#4169e1',
+        elevation: 15,
+        shadowColor: "black",
+        shadowRadius: 2,
+        shadowOpacity: 1,
 
     },
     

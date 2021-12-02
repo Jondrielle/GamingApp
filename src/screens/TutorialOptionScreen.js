@@ -40,31 +40,7 @@ const optionArray = [{screen:route,text:'How to create a new account',video :req
                     {screen:route,text:'How to log into your account',video :require('../../assets/tutorialvideos/vidaccount3.mp4')}
 ]
     return <View style={styles.container}>
-        	<View style={styles.circleShape}>
-
-
-<Video
-
-	style={styles.circleicon}
-	source={require('../../assets/logo/GameNet2.mp4')}
-	isLooping ={true}
-	//useNativeControls
-	resizeMode="contain"
-	shouldPlay
-
-
-/>
-</View>
-<View style = {styles.iconView}>
-<TouchableOpacity onPress = {() =>{
-    props.navigation.navigate(route)
-}}>
-<Ionicons name='arrow-back-circle'
-          style={{color:'green',marginLeft:300,fontSize:50,}}
-          />
-</TouchableOpacity>
-
-</View>
+            
         <Text style={styles.header}>Tutorial videos</Text>
 
         <ScrollView>
@@ -98,6 +74,7 @@ const styles = StyleSheet.create({
         flex: 1,
         //justifyContent: "center",
         backgroundColor: "#e5e5e5",
+        //borderWidth: 3
     },
    
     header: {
@@ -153,3 +130,17 @@ const styles = StyleSheet.create({
 });
 
 export default TutorialOptionScreen;
+
+/* Not needed
+<View style = {styles.iconView}>
+                <TouchableOpacity onPress = {() =>{
+                    props.navigation.navigate(route)}}
+                >
+                    <Ionicons 
+                        name='arrow-back-circle'
+                        style={{color:'green',marginLeft:300,fontSize:50,}}
+                    />
+                </TouchableOpacity>
+
+            </View>
+*/

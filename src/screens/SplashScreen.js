@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { 
-    ActivityIndicator,
     View,
     StyleSheet,
     Image
  } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContext } from "react-navigation";
+import {Video} from "expo-av"
+
 
 const SplashScreen = (props) => {
     const [animating, setAnimating] = useState(true);
@@ -31,32 +32,32 @@ const SplashScreen = (props) => {
 
     return (
         <View style={styles.screenView}>
-            <Image
-                source={require('../../assets/GameNet.png')}
-                style={styles.image}
-            />
-            <ActivityIndicator 
-                animating={animating}
-                size="large"
-                style={{alignItems: "center", height: 80}}
-                color="gray"
-                style={{opacity: 1}}
+            <Video
+            style={styles.circleicon}
+            source={require('../../assets/logo/GameNet2.mp4')}
+            isLooping ={true}
+            //useNativeControls
+            resizeMode="contain"
+            shouldPlay
             />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    image: {
-        height: 350,
-        width: 350
-    },
     screenView: {
         alignItems: 'center',
-        backgroundColor: "#0c3429",
+        backgroundColor: "#b7eecf",//#1b746e
         flex: 1,
         justifyContent: "center"
-    }
+    },
+    circleicon: {
+		width: 250,
+		height: 250,
+		borderRadius: 90,
+		alignSelf: 'center',
+        justifyContent:'center', 
+	},
 });
 
 export default SplashScreen;

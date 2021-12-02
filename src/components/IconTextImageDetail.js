@@ -11,11 +11,12 @@ import {
 } from 'react-native';
 
 const IconTextImageDetail = (props) => {
-
+    //code to display the text input tiitles.
+    //<Text style={styles.textStyle}>{props.title}</Text>
     return (
         <View style={styles.body} >
 
-            <Text style={styles.textStyle}>{props.title}</Text>
+            
 
             <View style={styles.innerView}>
                 <Entypo name={props.image} style={styles.iconstyle} />
@@ -37,7 +38,7 @@ const IconTextImageDetail = (props) => {
 const styles = StyleSheet.create({
 
     body: {
-        backgroundColor: '#1B322D',
+        backgroundColor: '#b7eecf',// #1B322D
         color: 'orange'
 
     },
@@ -45,8 +46,9 @@ const styles = StyleSheet.create({
         height: 40,
         borderColor: 'black',
         marginLeft: 7,
-        marginTop: 5,
+        marginTop: 1,
         fontSize: 20,
+        flex: 1
 
 
     },
@@ -76,13 +78,17 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontStyle: "italic",
         borderColor: "black",
-        borderWidth: 5,
+        borderWidth: 2,
         borderRadius: 15,
         width: 300,
         alignSelf: "center",
         height: 50,
         marginTop: 5,
-        backgroundColor:'skyblue'
+        backgroundColor:'white',
+        elevation: 15,
+        shadowColor: "black",
+        shadowRadius: 2,
+        shadowOpacity: 1,
 
     },
     iconstyle: {
