@@ -6,6 +6,7 @@ import SearchScreen from "../screens/SearchScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import DetailShowScreen from "../screens/DetailShowScreen";
+import SavedGameDetails from "../screens/SavedGameDetails";
 import { Ionicons, Entypo, Octicons } from '@expo/vector-icons';
 
 const SearchScreens = createStackNavigator({
@@ -17,12 +18,30 @@ const SearchScreens = createStackNavigator({
     },
     Detail: {
         screen: DetailShowScreen, 
+        navigationOptions: {
+			title: ""
+		}
+    }
+})
+
+const SavedGamesScreens = createStackNavigator({
+    SavedGames: {
+        screen: SavedGamesScreen,
+        navigationOptions: {
+            headerShown: false
+        }
+    },
+    Detail: {
+        screen: SavedGameDetails, 
+        navigationOptions: {
+			title: "",
+		}
     }
 })
 
 const TabNavigationRoutes = createBottomTabNavigator({
     SavedGames: {
-        screen: SavedGamesScreen,
+        screen: SavedGamesScreens,
         navigationOptions: {
             tabBarIcon: () => {
                 const iconName= "game-controller"
