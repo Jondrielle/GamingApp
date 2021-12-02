@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         shadowOffset:{width:120,height:120},
         shadowOpacity:300,
 		width:300,
-		marginHorizontal:45
+		marginHorizontal:45,
 	},
 	title:{
 		fontSize:20,

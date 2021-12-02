@@ -18,7 +18,7 @@ const [errorMessage,setErrorMessage] = useState("");
                     api_key: '09939eb54cdc38b5856d035d761e671c3b12cb17',
                     format: 'json',
                     //increase this limit
-                    limit:2,
+                    limit:20,
                     filter: "name:" + searchTerm
                 }
             });

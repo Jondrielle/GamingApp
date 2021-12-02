@@ -1,5 +1,5 @@
 import React, {useState,useEffect,useContext} from "react";
-import {Text, View, StyleSheet,Image, FlatList, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet,Image, FlatList, TouchableOpacity, ScrollView} from 'react-native';
 import SearchBar from "../components/SearchBar";
 import GameSpot from "../api/GameSpot";
 import useResults from "../hooks/useResults";
@@ -24,7 +24,7 @@ const filterByGameName = (name) => {
     return myFilteredArray;
 }
 
-    return <View style={{alignItems: "center"}}>
+    return <View style={styles.mainViewStyle}>
         <Text style={{marginTop:60}}></Text>
         <SearchBar 
             searchTerm = {searchTerm} 
@@ -34,12 +34,13 @@ const filterByGameName = (name) => {
         <Text>Results Found: {results.length}</Text>
         
         <FlatList
-			horizontal = {true}
+            numColumns = {2} 
+			horizontal = {false}
             data = {results}
 			keyExtractor = { (result) => {return result.id}}
 			renderItem = { ({item}) => {
-			return <View>
-				<TouchableOpacity onPress = { () => {props.navigation.navigate("Results", {id:item.id} )} }>
+			return <View style={styles.elementViewStyle}>
+				<TouchableOpacity style={styles.resultViewStyle} onPress = { () => {props.navigation.navigate("Results", {id:item.id} )} }>
 					<ResultsShowScreen result = {item}/>
 				</TouchableOpacity>
 				</View> } }
@@ -49,6 +50,17 @@ const filterByGameName = (name) => {
 }
 
 const styles = StyleSheet.create({
+    mainViewStyle: {
+        alignItems: "center",
+        flex: 1
+    },
+    elementViewStyle: {
+        //borderWidth: 2,
+        width: '50%',
+        paddingBottom: 20
+    },
+    resultViewStyle: {
+    },
 });
 
 export default SearchScreen;
