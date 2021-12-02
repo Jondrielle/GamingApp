@@ -104,11 +104,11 @@ const DetailShowScreen = (props) => {
 			<Text style={{alignSelf: "center", fontWeight: "bold"}}> Saved to your games list!</Text>
 		  </View>
 		: <View>
-			<TouchableOpacity onPress = { () => {addGame(id,image,name,date)} }>
+			<TouchableOpacity onPress = { () => {addGame(id,image,name,date); props.navigation.navigate("SavedGames")} }>
 				<Entypo style = {styles.saveIcon} name = "heart-outlined" color= "black"/>
 			</TouchableOpacity>
 		  </View>
-		//; props.navigation.navigate("SavedGames")
+		//
 		}
 	</ScrollView>
 }
