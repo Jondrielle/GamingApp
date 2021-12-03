@@ -8,4 +8,5 @@ console.Log("Inside of Edit Screen")
 
 const styles = StyleSheet.create({});
 
+
 export default EditProfileScreen;
