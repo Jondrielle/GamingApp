@@ -31,7 +31,7 @@ const SavedGamesScreens = createStackNavigator({
             headerShown: false
         }
     },
-    Detail: {
+    SavedGameDetail: {
         screen: SavedGameDetails, 
         navigationOptions: {
 			title: "",

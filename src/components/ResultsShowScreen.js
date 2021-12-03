@@ -10,7 +10,7 @@ const ResultsShowScreen = (props) => {
 	//const id = props.navigation.getParam("id");
 	//console.log(props);
 	const {addGame} = useContext(Context);
-	console.log(props.result.image.original);
+	//console.log(props.result.image.original);
 	//console.log("Inside of Results Show Screen");
 	//console.log(props);
 	

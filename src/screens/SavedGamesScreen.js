@@ -15,7 +15,7 @@ const listEmpty = () => {
     </View>
 }
 
-const SavedGamesScreen = () => {
+const SavedGamesScreen = (props) => {
 const {state,deleteGame} = useContext(Context);
 
 const releaseDate = (date) => {
@@ -68,13 +68,29 @@ const releaseDate = (date) => {
                 keyExtractor = { (game) => {return game.id} }
                 ListEmptyComponent = {listEmpty()}
                 renderItem = { ({item}) => { 
+                    //props.navigation.navigate("SavedGamesDetail"), {item}
+                    //deleteGame(item.id);console.log("game removed")
                     return <View style={styles.gameView}>
-                        <TouchableOpacity style={styles.gameImageViewStyle} onPress = { () => {deleteGame(item.id);console.log("game removed")} }>
+                    <TouchableOpacity style={styles.gameImageViewStyle} onPress = { () => {props.navigation.navigate("SavedGameDetail", {id:item.id, name: item.name, date: item.release_date, description: item.description,genre: item.genre, images: item.images })} }>
                             <Image style = {styles.gameImageStyle} source = { {uri: item.image} } />
                         </TouchableOpacity>
+
                         <Text style={{fontWeight: "bold", fontSize: 20, alignSelf: "center"}}>{item.name}</Text>
                         <Text style = {styles.date}>Release Date: {releaseDate(item.release_date).month} {releaseDate(item.release_date).day}, {releaseDate(item.release_date).year}</Text>
-                    </View> 
+                     
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={{marginLeft: 10}}>Genre: </Text>
+                            <FlatList
+                                style={{flexDirection: "row"}}
+                                data = {item.genre}
+                                horizontal= {true}
+                                keyExtractor = { (genre) => {return genre.name} }
+                                renderItem = { ({item}) => {return <View><Text style = {styles.genreList}>{item.name} | </Text></View>} }
+                            />
+                        </View>
+                        
+                    </View>
+                
                 }} 
             />
         </View>
@@ -93,12 +109,8 @@ const styles = StyleSheet.create({
     },
     flatListView: {
         flex: 1,
-        borderWidth: 3,
-        borderColor: "blue"
     },
     gameImageViewStyle:{
-        borderWidth: 2,
-        borderColor: "green",
         height: "50%",
         marginTop: 100,
         marginHorizontal: 30,
@@ -109,7 +121,6 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     gameView: {
-        borderWidth: 3,
         width: 300,
         borderColor: "black"
     },
@@ -121,6 +132,9 @@ const styles = StyleSheet.create({
     },
     date: {
         marginLeft: 10
+    },
+    genreList: {
+        
     }
 })
 

@@ -11,7 +11,10 @@ const gameReducer = (state, action) => {
                     id: action.payload.id,
                     image: action.payload.image,
                     name: action.payload.name,
-                    release_date: action.payload.release_date
+                    release_date: action.payload.release_date,
+                    description: action.payload.description,
+                    genre: action.payload.genre,
+                    images: action.payload.images
                    // releases_api_url: action.payload.releases_api_url,
                     //reviews_api_url: action.payload.reviews_api_url,
                     //site_detail_url: action.payload.site_detail_url,
@@ -51,8 +54,8 @@ const gameReducer = (state, action) => {
 //}
 
 const addGame= (dispatch) => {
-    return (id,image,name,release_date) => {
-        dispatch( {type: "add_game", payload: {id,image,name,release_date} } )
+    return (id,image,name,release_date,description,genre,images) => {
+        dispatch( {type: "add_game", payload: {id,image,name,release_date,description,genre,images} } )
     }
 }
 
