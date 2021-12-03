@@ -19,9 +19,9 @@ const gameReducer = (state, action) => {
                     //videos_api_url: action.payload.videos_api_url
                  } 
             ]
-        case 'delete_hero':
-            return state.filter((hero) => {
-                return hero.id !== action.payload
+        case 'delete_game':
+            return state.filter((game) => {
+                return game.id !== action.payload
             });
         case 'edit_blogpost':
             return state.map((blogPost) => {

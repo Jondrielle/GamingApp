@@ -1,14 +1,11 @@
 import React,{useContext} from "react";
 import { Text, View, StyleSheet,FlatList,Image,TouchableOpacity} from 'react-native';
-import {Context} from "../context/GameContext"
+import {Context} from "../context/GameContext";
 
 navigationOptions = { title: "Home"};
 
 
-const onLongPressButton = () => {
-console.log("Game removed");
-    deleteGame(item.id);
-}
+
 
 //a component which renders when the list is empty
 const listEmpty = () => {
@@ -72,15 +69,12 @@ const releaseDate = (date) => {
                 ListEmptyComponent = {listEmpty()}
                 renderItem = { ({item}) => { 
                     return <View style={styles.gameView}>
-                        <TouchableOpacity style={styles.gameImageViewStyle}>
+                        <TouchableOpacity style={styles.gameImageViewStyle} onPress = { () => {deleteGame(item.id);console.log("game removed")} }>
                             <Image style = {styles.gameImageStyle} source = { {uri: item.image} } />
                         </TouchableOpacity>
                         <Text style={{fontWeight: "bold", fontSize: 20, alignSelf: "center"}}>{item.name}</Text>
                         <Text style = {styles.date}>Release Date: {releaseDate(item.release_date).month} {releaseDate(item.release_date).day}, {releaseDate(item.release_date).year}</Text>
-                        
-                        
-                    </View>
-                
+                    </View> 
                 }} 
             />
         </View>
@@ -124,7 +118,6 @@ const styles = StyleSheet.create({
         fontSize: 30,
         alignSelf: "center",
         marginTop: 100,
-
     },
     date: {
         marginLeft: 10

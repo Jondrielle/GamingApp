@@ -6,7 +6,7 @@ import IconTextImageDetail from "../components/IconTextImageDetail"
 import LoginButtonDetail from "../components/LoginButtonDetail";
 import ForgotButtonDetail from "../components/ForgotButtonDetail";
 import TabNavigationRoutes from "../components/TabNavigationRoutes";
-import {Video} from "expo-av"
+import {Video} from "expo-av";
 
 
 // setting the state of individual code to false
