@@ -22,7 +22,7 @@ const [errorMessage,setErrorMessage] = useState("");
                     filter: "name:" + searchTerm
                 }
             });
-            addGame(response.data.results);
+            //addGame(response.data.results);
             setResults(response.data.results);
             setErrorMessage("");
         }catch(e){
