@@ -22,17 +22,16 @@ const DetailShowScreen = (props) => {
 	
 	const {state,addGame} = useContext(Context);
 	
-	
 	//Attempting to get extra images is causing an error 404
     //we'll remove this function
-    /*
-    const getImages = async (images) => {
+    
+    const getReviews = async (reviews) => {
 		try{
-			const response = await GameSpot.get('/images',{
+			const response = await GameSpot.get('/reviews',{
 				params:{
 					api_key: '09939eb54cdc38b5856d035d761e671c3b12cb17',
 					format: 'json',
-					filter: "association: " + {images}
+					filter: "game:" + name
 				}
 			});
 			setResult(response.data);
@@ -40,8 +39,8 @@ const DetailShowScreen = (props) => {
 			console.error(e)
 		}
 	} 
-    */
-
+    
+	console.log(result);
 	const releaseDate = (date) => {
 		let fullDate = {}
 		fullDate.year = date.slice(0,4)
