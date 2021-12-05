@@ -1,5 +1,5 @@
 import React,{useContext} from "react";
-import { Text, View, StyleSheet,FlatList,Image,TouchableOpacity} from 'react-native';
+import { Text, View, StyleSheet,FlatList,Image,TouchableOpacity,Alert} from 'react-native';
 import {Context} from "../context/GameContext";
 
 navigationOptions = { title: "Home"};
@@ -17,6 +17,12 @@ const listEmpty = () => {
 
 const SavedGamesScreen = (props) => {
 const {state,deleteGame} = useContext(Context);
+
+const handlerLongClick = (id) => {
+    //handler for Long Click
+    alert('Game Removed');
+    //deleteGame(id)
+  };
 
 const releaseDate = (date) => {
     let fullDate = {}
@@ -71,7 +77,8 @@ const releaseDate = (date) => {
                     //props.navigation.navigate("SavedGamesDetail"), {item}
                     //deleteGame(item.id);console.log("game removed")
                     return <View style={styles.gameView}>
-                    <TouchableOpacity style={styles.gameImageViewStyle} onPress = { () => {props.navigation.navigate("SavedGameDetail", {id:item.id, name: item.name, date: item.release_date, description: item.description,genre: item.genre, images: item.images })} }>
+                    <TouchableOpacity style={styles.gameImageViewStyle} onPress = { () => {props.navigation.navigate("SavedGameDetail", {id:item.id, name: item.name, date: item.release_date, description: item.description,genre: item.genre, images: item.images });
+                        onLongPress = {handlerLongClick} } }>
                             <Image style = {styles.gameImageStyle} source = { {uri: item.image} } />
                         </TouchableOpacity>
 

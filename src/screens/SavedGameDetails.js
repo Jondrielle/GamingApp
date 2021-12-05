@@ -1,6 +1,5 @@
 import React,{useState,useEffect,useContext} from "react";
 import {Text,StyleSheet,View,Image,FlatList,TouchableOpacity, ScrollView} from "react-native";
-import TabNavigationRoutes from "../components/TabNavigationRoutes";
 import GameSpot from "../api/GameSpot";
 import ResultsShowScreen from "../components/ResultsShowScreen";
 import {Context} from "../context/GameContext";

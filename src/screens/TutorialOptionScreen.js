@@ -24,7 +24,6 @@ let screenNavigation = {
         option:'Tutorials',
         player:'VideoPlayerScreen',
         index:'IndexScreen'
-    
     }
     
     let route = ''
@@ -62,10 +61,7 @@ const optionArray = [{screen:route,text:'How to create a new account',video :req
             <TutorialData text='??????????'/>
             <TutorialData text='??????????'/>
             <TutorialData text='??????????'/>
-
-           
         </ScrollView>
-
     </View>
 }
 
@@ -111,20 +107,16 @@ const styles = StyleSheet.create({
 		borderRadius: 50 / 2,
 		alignSelf: 'center',
         justifyContent:'center'
-
 	},
-	
 	signinStyle: {
 		alignSelf: 'center',
 		fontSize: 40,
 		marginBottom: 12,
 		color:'skyblue'
-
 	},
     iconView:{
         top:-27,
         marginLeft:30
-
     }
 
 });
