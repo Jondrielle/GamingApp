@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native"
 import LoginButtonDetail from "../components/LoginButtonDetail";
+import TabNavigationRoutes from "../components/TabNavigationRoutes";
 
 import { Video } from "expo-av";
 
@@ -41,10 +42,8 @@ const VideoPlayerScreen = function (props) {
     console.log(vidtext);
     console.log(vidlink);
 
-    return <View style={styles.container}>
-        
+    return <View style={styles.container}> 
         <View style={styles.circleShape}>
-
 
 <Video
 
@@ -59,25 +58,20 @@ const VideoPlayerScreen = function (props) {
 />
 </View>
 <Text style={styles.text}>{vidtext}</Text>
-
         <View style={styles.background}>
             <Video
                 source={vidlink}
-
                 useNativeControls
                 resizeMode='stretch'
                 style={styles.videoplayerstyle}
-
             />
             <View style={{marginTop:50,marginBottom:30}}>
                 <LoginButtonDetail
-
                     title={message}
                     colorChange={true}
                     handler={() => {
-                        props.navigation.navigate(route)
+                        props.navigation.navigate("Tab");
                     }}
-
                 />
             </View>
 

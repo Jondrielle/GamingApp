@@ -1,6 +1,5 @@
 import React, {useReducer} from "react";
 import createDataContext from "./createDataContext";
-import SearchScreen from "../screens/SearchScreen";
 
 const gameReducer = (state, action) => {
     switch(action.type){

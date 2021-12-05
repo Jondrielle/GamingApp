@@ -22,7 +22,7 @@ import IndexScreen from "./src/screens/IndexScreen";
 const AuthStack = createStackNavigator({
 	Welcome: WelcomeScreen,
 	//Game:GameShowScreen,
-	
+	Profile: UserScreen,
 	Results:ResultsShowScreen,
 	reset:ResetPasswordScreen,
     user:UserScreen,
@@ -57,7 +57,6 @@ const AuthStack = createStackNavigator({
 },
 {
 	initialRouteName: "Login",	
-
 });
 
 const App = createAppContainer(

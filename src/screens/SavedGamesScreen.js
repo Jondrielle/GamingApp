@@ -21,7 +21,7 @@ const {state,deleteGame} = useContext(Context);
 const handlerLongClick = (id) => {
     //handler for Long Click
     alert('Game Removed');
-    deleteGame(id)
+    //deleteGame(id)
   };
 
 const releaseDate = (date) => {

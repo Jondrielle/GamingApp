@@ -1,6 +1,5 @@
 import React,{useContext} from "react";
 import {Text,StyleSheet,Image,View,TouchableOpacity} from "react-native";
-import DetailShowScreen from "../screens/DetailShowScreen";
 import {withNavigation} from "react-navigation";
 import {EvilIcons} from "@expo/vector-icons";
 import {Context} from "../context/GameContext";

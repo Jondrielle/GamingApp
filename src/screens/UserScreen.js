@@ -38,38 +38,30 @@ const UserScreen = (props) => {
 
 	return <View style={styles.background} >
 		<View style={styles.circleShape}>
-
-
 			<Video
-
 				style={styles.icon}
 				source={require('../../assets/logo/GameNet2.mp4')}
 				isLooping={true}
 				//useNativeControls
 				resizeMode="contain"
 				shouldPlay
-
 			/>
-
 		</View>
 		<View />
 		<Text style={styles.welcomeText}>Welcome {user.username} !</Text>
 		<View>
-			<TouchableOpacity onPress = { () => {props.navigation.navigate("Tab")} }>
-				<Text>Start Tutorial</Text>
-			</TouchableOpacity>
 			<TouchableOpacity onPress={async function () {
-
 				removeKey('LoggedOn')
 				removeKey('CurrentUserKey')
 				removeKey('CurrentUser')
-
-				props.navigation.navigate("Welcome")
+				props.navigation.navigate("Login")
 			}}>
 				<Text style={styles.logoutButton}>Logout</Text>
 			</TouchableOpacity>
+			<TouchableOpacity onPress={ function () {props.navigation.navigate("Tab")}}>
+				<Text style={styles.logoutButton}>Go Back</Text>
+			</TouchableOpacity>
 		</View>
-
 	</View>
 }
 
