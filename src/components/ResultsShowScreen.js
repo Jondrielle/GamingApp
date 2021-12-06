@@ -1,6 +1,5 @@
 import React,{useContext} from "react";
 import {Text,StyleSheet,Image,View,TouchableOpacity} from "react-native";
-import DetailShowScreen from "../screens/DetailShowScreen";
 import {withNavigation} from "react-navigation";
 import {EvilIcons} from "@expo/vector-icons";
 import {Context} from "../context/GameContext";
@@ -10,7 +9,7 @@ const ResultsShowScreen = (props) => {
 	//const id = props.navigation.getParam("id");
 	//console.log(props);
 	const {addGame} = useContext(Context);
-	console.log(props.result.image.original);
+	//console.log(props.result.image.original);
 	//console.log("Inside of Results Show Screen");
 	//console.log(props);
 	

@@ -1,5 +1,4 @@
 import React, {useReducer} from 'react';
-import SearchScreen from "../screens/SearchScreen";
 
 export default (reducer, actions, initialState) => {
     const Context = React.createContext();

@@ -4,8 +4,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import IconTextImageDetail from "../components/IconTextImageDetail";
 import TutorialScreen from "../screens/TutorialScreen";
 import LoginButtonDetail from "../components/LoginButtonDetail";
-import LogoDetail from '../../assets/logo/GameNet2.mp4'
-import {Video} from "expo-av"
+import LogoDetail from '../../assets/logo/GameNet2.mp4';
+import {Video} from "expo-av";
 
 
 let user = {
@@ -24,7 +24,6 @@ const SignUpScreen = (props) => {
 	const [securedCode, setSecuredCode] = useState({ code: '' })
 
 	user = {
-
 		username: username,
 		password: password,
 		email: email,
@@ -49,7 +48,6 @@ const SignUpScreen = (props) => {
 	};
 
 	const keyExist = async function () {
-
 		let result = false;
 		try{
 		const keys = await AsyncStorage.getAllKeys();
@@ -62,11 +60,8 @@ const SignUpScreen = (props) => {
 			}
 		}
 	}catch(e){console.log(e+"line 62 sign uo screen");}
-
-
 		return result;
 	}
-
 
 	const storageGet = async () => {
 		try {
@@ -95,27 +90,21 @@ const SignUpScreen = (props) => {
 
 	return <View style={styles.background}>
 			<View style={styles.container}>
-
 				<Text style={styles.signupStyle}>Sign Up</Text>
-
 				<IconTextImageDetail title='Code'
 					placeholder='Enter Code'
 					image='code'
 					viewInput={true}
 					handler={function (newText) { setSecuredCode({ ...securedCode, code: newText }); user = { ...user, code: newText } }}
 				/>
-
 				<Text style={styles.errorStyle}>{securedCode.code.length > 3 ? null : 'code cannot be less than 4 characters'}</Text>
-
 				<IconTextImageDetail title='Username'
 					placeholder='Enter Username'
 					image='user'
 					viewInput={false}
 					handler={function (newText) { setUserName(newText); user = { ...user, username: newText } }}
-
 				/>
 				<Text style={styles.errorStyle}>{username.length > 4 ? null : 'username cannot be less than 4 characters'}</Text>
-
 				<IconTextImageDetail title='Password'
 					placeholder='Enter Password'
 					image='key'
@@ -123,7 +112,6 @@ const SignUpScreen = (props) => {
 					handler={function (newText) { setPassWord(newText); user = { ...user, password: newText } }}
 				/>
 				<Text style={styles.errorStyle}>{password.length > 4 ? null : 'password cannot be less than 4 characters'}</Text>
-
 				<IconTextImageDetail title='Verify Password'
 					placeholder='Enter matching Password'
 					image='key'
@@ -131,22 +119,18 @@ const SignUpScreen = (props) => {
 					handler={function (newText) { setVerifyPassWord(newText) }}
 				/>
 				<Text style={styles.errorStyle}>{verifypassword === password ? null : 'password is not a match'}</Text>
-
 				<IconTextImageDetail title='Email'
 					placeholder='Enter email'
 					image='mail'
 					viewInput={false}
 					handler={function (newText) { setEmail(newText); user = { ...user, email: newText } }}
-
 				/>
 				<Text style={styles.errorStyle2}>{email.length > 8 ? null : 'code cannot be less than 8 characters'}</Text>
 			
-
 				<LoginButtonDetail 
 					colorChange ={true}
 					title='Confirm'
 					handler={() => {
-						console.log('hey');
 						{
 							let isValidUsername = false;
 							let isValidPassword = false;
@@ -154,87 +138,61 @@ const SignUpScreen = (props) => {
 							let isValidCode = false;
 
 							if (securedCode.code.length > 3) {
-
 								isValidCode = true
-
 							} else {
 								Alert.alert('code cant be less than 4 characters')
 							}
 							//verifying the email
 							if (verifypassword === password) {
-								//props.navigation.navigate('Welcome')
 								if (password.length > 3) {
 									setPassWord(password)
 									isValidPassword = true
 								} else
 									Alert.alert('password characters must be greater than 0');
-
 							} else {
 								Alert.alert('password does not match !! try again');
 							}
+
 							//verifying the password 
-
 							if (email !== '') {
-
 								if (email.length > 8) {
-
 									setEmail(email)
 									isValidEmail = true
-
 								} else
 									Alert.alert('email characters must be greater than 8 ');
-
 							} else {
 								Alert.alert('email cannot be empty');
 							}
-
 							// verifying the username
 							if (username !== '') {
-
 								if (username.length > 3) {
-
 									setUserName(username)
 									isValidUsername = true
-
 								} else {
 									Alert.alert("Username characters must be greater than 0 ")
 								}
-
 							} else {
 								Alert.alert('Username cannot be empty');
 							}
-
 							if ((isValidEmail && isValidPassword && isValidUsername && isValidCode) === true) {
-
 								if (keyExist()) {
-									console.log(user);
 									setData()
-									console.log(securedCode.code)
 									storageGet(securedCode.code)
 									getAll()
-
-									props.navigation.navigate('Welcome', user)
-
+									props.navigation.navigate("Tab");
 								}
 							}
 						}
-
 					}} 
 				/>
 				<View style={styles.signUpView}>
 					<Text style={styles.signUpText1}>Already have an account ?</Text>
-
 					<Pressable onPress={() => {
-
 						props.navigation.navigate('Login')
 					}}>
 						<Text style={styles.signUpText2}>Sign In</Text>
-
 					</Pressable>
-
 				</View>
-
-
 		</View>
 		<Video
 			style={styles.circleicon}
@@ -245,7 +203,6 @@ const SignUpScreen = (props) => {
 			shouldPlay
 		/>
 	</View>
-
 };
 
 const styles = StyleSheet.create({
@@ -262,9 +219,7 @@ const styles = StyleSheet.create({
 		alignSelf: "center",
 		height: 10,
 		marginTop: 25
-
 	},
-
 	container: {
 		flex: 1,
 		backgroundColor: '#b7eecf',
@@ -273,7 +228,6 @@ const styles = StyleSheet.create({
 		borderWidth: 4,
 		width:350,
 		paddingTop: 50
-
 	},
 	confirmStyle: {
 
@@ -297,9 +251,7 @@ const styles = StyleSheet.create({
 		height: 450,
 		borderRadius: 5,
 		backgroundColor: '#1B322D',
-
 	},
-
 	background: {
 		flex: 1,
 		backgroundColor: '#b7eecf',
@@ -310,7 +262,6 @@ const styles = StyleSheet.create({
 		fontSize: 40,
 		marginBottom: 10,
 		color:'black'
-
 	},
 	errorStyle: {
 		color: 'red',
@@ -325,14 +276,10 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
 		marginTop: 25,
-
-
-
 	},
 	signUpText1: {
 		fontSize: 20,
 		color:'skyblue'
-
 	},
 	signUpText2: {
 		fontSize: 20,
@@ -342,10 +289,8 @@ const styles = StyleSheet.create({
 		color:'#3063a0',
 	},
 	circlebackground: {
-		backgroundColor: "#1B322D"
-		
-	},
-		
+		backgroundColor: "#1B322D"		
+	},		
 	circleShape: {
 		width: 50,
 		height: 50,
@@ -358,7 +303,6 @@ const styles = StyleSheet.create({
 		borderColor: "blue",
 		bottom:-20,
 		right:-10
-
 	},
 	circleicon: {
 		width: 100,
@@ -369,7 +313,6 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		marginTop: 700
 	}
-
 });
 export default SignUpScreen;
 

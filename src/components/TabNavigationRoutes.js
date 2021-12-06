@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import {createStackNavigator} from "react-navigation-stack";
 import SavedGamesScreen from "../screens/SavedGamesScreen";
 import SearchScreen from "../screens/SearchScreen";
-import ProfileScreen from "../screens/ProfileScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import DetailShowScreen from "../screens/DetailShowScreen";
 import SavedGameDetails from "../screens/SavedGameDetails";
@@ -31,7 +30,7 @@ const SavedGamesScreens = createStackNavigator({
             headerShown: false
         }
     },
-    Detail: {
+    SavedGameDetail: {
         screen: SavedGameDetails, 
         navigationOptions: {
 			title: "",
@@ -55,15 +54,6 @@ const TabNavigationRoutes = createBottomTabNavigator({
             tabBarIcon: () => {
                 const iconName= "magnifying-glass"
                 return <Entypo name={iconName} size={30}/>
-            }
-        }
-    },
-    Profile: {
-        screen: ProfileScreen,
-        navigationOptions: {
-            tabBarIcon: () => {
-                const iconName= "person"
-                return <Ionicons name={iconName} size={30}/>
             }
         }
     },

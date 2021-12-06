@@ -40,7 +40,7 @@ const filterByGameName = (name) => {
 			keyExtractor = { (result) => {return result.id}}
 			renderItem = { ({item}) => {
 			return <View style={styles.elementViewStyle}>
-				<TouchableOpacity style={styles.resultViewStyle} onPress = { () => {props.navigation.navigate("Results", {id:item.id} )} }>
+				<TouchableOpacity style={styles.resultViewStyle} onPress = { () => {props.navigation.navigate("Detail", {id:item.id} )} }>
 					<ResultsShowScreen result = {item}/>
 				</TouchableOpacity>
 				</View> } }

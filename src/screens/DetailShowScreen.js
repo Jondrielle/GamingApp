@@ -10,8 +10,8 @@ import { startDetecting } from "react-native/Libraries/Utilities/PixelRatio";
 
 const DetailShowScreen = (props) => {
 //console.log("Inside of game screen");
-	//console.log(props);
 	const [result,setResult] = useState(null);
+	
 	const id = props.navigation.getParam("id");
 	const name = props.navigation.getParam("name");
 	const image = props.navigation.getParam("image");
@@ -19,19 +19,28 @@ const DetailShowScreen = (props) => {
 	const description = props.navigation.getParam("description");
 	const genre = props.navigation.getParam("genre");
 	const images = props.navigation.getParam("images");
+	
 	const {state,addGame} = useContext(Context);
-	//console.log(result);
-	const getImages = async (images) => {
-		const response = await GameSpot.get('/images',{
-			params:{
-				api_key: '09939eb54cdc38b5856d035d761e671c3b12cb17',
-                format: 'json',
-				filter: "association: " + {images}
-			}
-		});
-		setResult(response.data);
+	
+	//Attempting to get extra images is causing an error 404
+    //we'll remove this function
+    
+    const getReviews = async (reviews) => {
+		try{
+			const response = await GameSpot.get('/reviews',{
+				params:{
+					api_key: '09939eb54cdc38b5856d035d761e671c3b12cb17',
+					format: 'json',
+					filter: "game:" + name
+				}
+			});
+			setResult(response.data);
+		} catch(e){
+			console.error(e)
+		}
 	} 
-
+    
+	console.log(result);
 	const releaseDate = (date) => {
 		let fullDate = {}
 		fullDate.year = date.slice(0,4)
@@ -82,9 +91,12 @@ const DetailShowScreen = (props) => {
 		})
 		return found
 	}
-
-	useEffect( () => {getImages(images)}, [] );
+	
+	//not attempting to get extra images
+	//useEffect( () => {getImages(images)}, [] );
+	
 	return <ScrollView style={{paddingLeft: 10}}>
+		
 		<Text style = {styles.name}>{name}</Text>
 		<View style={{flexDirection: "row"}}>
 			<Text style={{fontSize:20, fontWeight: "bold", paddingTop: 3}}>Genre: </Text>
@@ -104,13 +116,14 @@ const DetailShowScreen = (props) => {
 			<Text style={{alignSelf: "center", fontWeight: "bold"}}> Saved to your games list!</Text>
 		  </View>
 		: <View>
-			<TouchableOpacity onPress = { () => {addGame(id,image,name,date); props.navigation.navigate("SavedGames")} }>
+			<TouchableOpacity onPress = { () => {addGame(id,image,name,date,description,genre,images); props.navigation.navigate("SavedGames")} }>
 				<Entypo style = {styles.saveIcon} name = "heart-outlined" color= "black"/>
 			</TouchableOpacity>
 		  </View>
 		//
 		}
 	</ScrollView>
+	
 }
 
 const styles = StyleSheet.create({
