@@ -27,7 +27,8 @@ const AuthStack = createStackNavigator({
     user: {
 		screen: UserScreen,
 		headerShown: false,
-		title: ""
+		title: "",
+		headerLeft:null,
 	},
     unique:{
 		screen: UniqueKeyScreen,

@@ -147,7 +147,7 @@ const LoginScreen = (props) => {
 
 				<ForgotButtonDetail title='forgot password ?'
 					handler={() => {
-						props.navigation.navigate('unique')
+						props.navigation.navigate('reset')
 					}
 					}
 				/>

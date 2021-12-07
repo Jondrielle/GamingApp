@@ -124,7 +124,7 @@ const SignUpScreen = (props) => {
 					viewInput={false}
 					handler={function (newText) { setEmail(newText); user = { ...user, email: newText } }}
 				/>
-				<Text style={styles.errorStyle2}>{email.length > 8 ? null : 'code cannot be less than 8 characters'}</Text>
+				<Text style={styles.errorStyle2}>{email.length > 8 ? null : 'email cannot be less than 8 characters'}</Text>
 			
 				<LoginButtonDetail 
 					colorChange ={true}
@@ -178,7 +178,7 @@ const SignUpScreen = (props) => {
 									setData()
 									storageGet(securedCode.code)
 									getAll()
-									props.navigation.navigate("Tab");
+									props.navigation.navigate("option");
 								}
 							}
 						}

@@ -19,6 +19,8 @@ const DetailShowScreen = (props) => {
 	const description = props.navigation.getParam("description");
 	const genre = props.navigation.getParam("genre");
 	const images = props.navigation.getParam("images");
+
+
 	
 	const {state,addGame} = useContext(Context);
 	

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native"
+import { View, StyleSheet, Text, TouchableOpacity} from "react-native"
 import LoginButtonDetail from "../components/LoginButtonDetail";
 import TabNavigationRoutes from "../components/TabNavigationRoutes";
 
@@ -66,13 +66,11 @@ const VideoPlayerScreen = function (props) {
                 style={styles.videoplayerstyle}
             />
             <View style={{marginTop:50,marginBottom:30}}>
-                <LoginButtonDetail
-                    title={message}
-                    colorChange={true}
-                    handler={() => {
-                        props.navigation.navigate("Tab");
-                    }}
-                />
+            <TouchableOpacity onPress = { () => {props.navigation.navigate("Tab")} } >
+                 <View style={styles.innerView}>
+                    <Text style = {styles.button}>Home Screen</Text>
+                 </View>
+            </TouchableOpacity>
             </View>
 
         </View>
@@ -107,8 +105,6 @@ const styles = StyleSheet.create({
         marginLeft: 100,
         marginRight: 100,
         alignSelf: 'center'
-
-
     },
     background: {
         backgroundColor: '#1B322D',
@@ -124,7 +120,6 @@ const styles = StyleSheet.create({
 		borderWidth: 5,
 		borderColor: "blue",
 		right:-10
-
 	},
 	circleicon: {
 		width: 50,
@@ -132,8 +127,46 @@ const styles = StyleSheet.create({
 		borderRadius: 50 / 2,
 		alignSelf: 'center',
         justifyContent:'center'
-
-	}
+	},
+    button:{
+        fontSize: 25,
+        fontStyle: "italic",
+        alignSelf: "center",
+    },
+    innerView: {
+        marginHorizontal: 70,
+        fontSize: 25,
+        fontStyle: "italic",
+        borderWidth: 3,
+        borderRadius: 15,
+        width: 300,
+        alignSelf: "center",
+        justifyContent:'center',
+        height: 50,
+        marginTop: 5,
+        backgroundColor: 'lightgrey',
+        elevation: 5,
+        shadowColor: "black",
+        shadowRadius: 2,
+        shadowOpacity: 1,
+    },
+    innerView2: {
+        marginHorizontal: 70,
+        fontSize: 25,
+        fontStyle: "italic",
+        borderWidth: 2,
+        borderRadius: 15,
+        width: 300,
+        alignSelf: "center",
+        justifyContent:'center',
+        height: 50,
+        marginTop: 5,
+        backgroundColor:'#4169e1',
+        elevation: 15,
+        shadowColor: "black",
+        shadowRadius: 2,
+        shadowOpacity: 1,
+    }
 });
 
 
