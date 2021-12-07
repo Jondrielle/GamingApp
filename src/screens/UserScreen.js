@@ -48,7 +48,7 @@ const UserScreen = (props) => {
 			/>
 		</View>
 		<View />
-		<Text style={styles.welcomeText}>Welcome {user.username} !</Text>
+		<Text style={styles.welcomeText}>Welcome!</Text>
 		<View>
 			<TouchableOpacity onPress={async function () {
 				removeKey('LoggedOn')
@@ -67,7 +67,7 @@ const UserScreen = (props) => {
 
 const styles = StyleSheet.create({
 	background: {
-		backgroundColor:"#1B322D",
+		backgroundColor:"#b7eecf",
 		height: 800,
 		alignItems: "stretch"
 	},
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
 		fontStyle: "italic",
 		margin: 50,
 		marginLeft: 100,
-		color:'skyblue'
+		color:'black'
 	},
 	
 	circleShape: {
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		marginTop: 150,
 		borderWidth: 5,
-		borderColor: "blue"
+		borderColor: "black"
 	},
 	icon: {
 		width: 190,

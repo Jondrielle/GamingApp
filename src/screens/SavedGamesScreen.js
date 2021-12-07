@@ -65,6 +65,8 @@ const releaseDate = (date) => {
     return fullDate
     }
 
+        let possibleColors = ['#b7eecf', '#a9c4f5', '#f08080']
+
     return <View style={styles.mainView}>
         <Text style={styles.screenTitle}>Saved Games</Text>
         <View style={styles.flatListView}>
@@ -73,16 +75,16 @@ const releaseDate = (date) => {
                 horizontal= {true}
                 keyExtractor = { (game) => {return game.id} }
                 ListEmptyComponent = {listEmpty()}
-                renderItem = { ({item}) => { 
+                renderItem = { ({item, index}) => { 
                     //props.navigation.navigate("SavedGamesDetail"), {item}
                     //deleteGame(item.id);console.log("game removed")
-                    return <View style={styles.gameView}>
+                    return <View style={{width: 300, borderColor: "black", backgroundColor: possibleColors[index % possibleColors.length]}}>
                     <TouchableOpacity style={styles.gameImageViewStyle} onPress = { () => {
                     props.navigation.navigate("SavedGameDetail", {id:item.id, name: item.name, date: item.release_date, description: item.description,genre: item.genre, images: item.images });
                     } }>
                             <Image style = {styles.gameImageStyle} source = { {uri: item.image} } />
                         </TouchableOpacity>
-
+                        
                         <Text style={{fontWeight: "bold", fontSize: 20, alignSelf: "center"}}>{item.name}</Text>
                         <Text style = {styles.date}>Release Date: {releaseDate(item.release_date).month} {releaseDate(item.release_date).day}, {releaseDate(item.release_date).year}</Text>
                      
@@ -105,9 +107,11 @@ const releaseDate = (date) => {
         
     </View>    
 }
-//<Text style = {styles.gameImage}>{item.image}</Text>
+
+
 
 const styles = StyleSheet.create({
+    
     emptyListStyle: {
         //borderWidth: 3,
         height: 600
@@ -129,8 +133,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     gameView: {
-        width: 300,
-        borderColor: "black"
+        
     },
     screenTitle: {
         fontWeight: "bold",
