@@ -77,8 +77,9 @@ const releaseDate = (date) => {
                     //props.navigation.navigate("SavedGamesDetail"), {item}
                     //deleteGame(item.id);console.log("game removed")
                     return <View style={styles.gameView}>
-                    <TouchableOpacity style={styles.gameImageViewStyle} onPress = { () => {props.navigation.navigate("SavedGameDetail", {id:item.id, name: item.name, date: item.release_date, description: item.description,genre: item.genre, images: item.images });
-                        onLongPress = {handlerLongClick} } }>
+                    <TouchableOpacity style={styles.gameImageViewStyle} onPress = { () => {
+                    props.navigation.navigate("SavedGameDetail", {id:item.id, name: item.name, date: item.release_date, description: item.description,genre: item.genre, images: item.images });
+                    } }>
                             <Image style = {styles.gameImageStyle} source = { {uri: item.image} } />
                         </TouchableOpacity>
 
