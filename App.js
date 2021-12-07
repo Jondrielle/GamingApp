@@ -4,7 +4,6 @@ import { createSwitchNavigator } from "react-navigation";
 import React from "react";
 import LoginScreen from "./src/screens/LoginScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
-import TutorialScreen from "./src/screens/TutorialScreen";
 import SplashScreen from "./src/screens/SplashScreen";
 import EditProfileScreen from "./src/screens/EditProfileScreen";
 import TabNavigationRoutes from "./src/components/TabNavigationRoutes";
@@ -35,12 +34,12 @@ const AuthStack = createStackNavigator({
 	option:{
 		screen: TutorialOptionScreen,
 		navigationOptions: {
-			title: "Tutorials"
+			title: "Tutorials",
+			headerLeft:null,
 		}
 	},
     player:VideoPlayerScreen,
 	index:IndexScreen,
-    Tutorial: TutorialScreen,
 	Login: {
 		screen: LoginScreen,
 		navigationOptions: {
