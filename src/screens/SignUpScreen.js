@@ -81,7 +81,6 @@ const SignUpScreen = (props) => {
 			try {
 				console.log(typeof user, typeof securedCode.code)
 				await AsyncStorage.setItem(securedCode.code, JSON.stringify(user));
-				props.navigation.navigate('Welcome', user);
 			} catch (error) {
 				console.log(error);
 			}
