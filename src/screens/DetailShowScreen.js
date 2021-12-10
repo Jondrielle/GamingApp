@@ -6,12 +6,11 @@ import ResultsShowScreen from "../components/ResultsShowScreen";
 import {Context} from "../context/GameContext";
 import {EvilIcons, Entypo} from "@expo/vector-icons";
 import { startDetecting } from "react-native/Libraries/Utilities/PixelRatio";
+import { Video } from "expo-av";
 
 
 const DetailShowScreen = (props) => {
 //console.log("Inside of game screen");
-	const [result,setResult] = useState(null);
-	
 	const id = props.navigation.getParam("id");
 	const name = props.navigation.getParam("name");
 	const image = props.navigation.getParam("image");
@@ -19,28 +18,29 @@ const DetailShowScreen = (props) => {
 	const description = props.navigation.getParam("description");
 	const genre = props.navigation.getParam("genre");
 	const images = props.navigation.getParam("images");
-	
+	const reviews = props.navigation.getParam("review");
+
+	const [results,setResults] = useState([]);
 	const {state,addGame} = useContext(Context);
-	
 	//Attempting to get extra images is causing an error 404
     //we'll remove this function
-    
-    const getReviews = async (reviews) => {
+    const getReviews = async () => {
 		try{
-			const response = await GameSpot.get('/reviews',{
+			const response = await GameSpot.get(`/reviews`,{
 				params:{
 					api_key: '09939eb54cdc38b5856d035d761e671c3b12cb17',
 					format: 'json',
-					filter: "game:" + name
-				}
+					limit:1,
+				},
 			});
-			setResult(response.data);
+			setResults(response.data.results);
 		} catch(e){
 			console.error(e)
 		}
 	} 
-    
-	console.log(result);
+	useEffect( () => {
+        getReviews()}, [] )
+	console.log(results);
 	const releaseDate = (date) => {
 		let fullDate = {}
 		fullDate.year = date.slice(0,4)
@@ -96,7 +96,6 @@ const DetailShowScreen = (props) => {
 	//useEffect( () => {getImages(images)}, [] );
 	
 	return <ScrollView style={{paddingLeft: 10}}>
-		
 		<Text style = {styles.name}>{name}</Text>
 		<View style={{flexDirection: "row"}}>
 			<Text style={{fontSize:20, fontWeight: "bold", paddingTop: 3}}>Genre: </Text>
@@ -171,7 +170,19 @@ const styles = StyleSheet.create({
 	},
 	saveIcon:{
 		fontSize:100,
-	}
+	},
+	circleShape: {
+		width: 50,
+		height: 50,
+		borderRadius: 50 / 2,
+		backgroundColor: "blue",
+		marginLeft: 10,
+		justifyContent: 'center',
+		marginTop: 20,
+		borderWidth: 5,
+		borderColor: "blue",
+		right:-10
+	},
 });
 
 export default DetailShowScreen;

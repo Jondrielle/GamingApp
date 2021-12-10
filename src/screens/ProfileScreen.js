@@ -3,6 +3,9 @@ import { Text, Image, StyleSheet, View, TouchableOpacity, Alert } from "react-na
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Video } from "expo-av";
 
+/*
+	This file is for the user to log out of the account.
+*/
 const removeKey = async function (key) {
 	try {
 		await AsyncStorage.removeItem(key);

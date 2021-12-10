@@ -9,6 +9,7 @@ import {EvilIcons, Entypo} from "@expo/vector-icons";
 const DetailShowScreen = (props) => {
     
 	const [result,setResult] = useState(null);
+	const [saved,setSaved] = useState("heart");
 
 	const id = props.navigation.getParam("id");
 	const name = props.navigation.getParam("name");
@@ -18,7 +19,7 @@ const DetailShowScreen = (props) => {
 	const genre = props.navigation.getParam("genre");
 	const images = props.navigation.getParam("images");
 	
-    const {state,addGame} = useContext(Context);
+    const {state,addGame,deleteGame} = useContext(Context);
 
     //Attempting to get extra images is causing an error 404
     //we'll remove this function
@@ -94,8 +95,12 @@ const DetailShowScreen = (props) => {
 	}
     
 	return <ScrollView style={{paddingLeft: 10}}>
-		
-		<Text style = {styles.name}>{name}</Text>
+		<View style = {{flexDirection:"row"}}>
+			<Text style = {styles.name}>{name}</Text>
+			<TouchableOpacity onPress = { () => {deleteGame(id)} }>
+					<EvilIcons style = {styles.trashIcon} name = "trash" />
+			</TouchableOpacity>
+		</View>
 		<View style={{flexDirection: "row"}}>
 			<Text style={{fontSize:20, fontWeight: "bold", paddingTop: 3}}>Genre: </Text>
 			<FlatList
@@ -134,6 +139,10 @@ const styles = StyleSheet.create({
         shadowOpacity:300,
 		width:300,
 		marginHorizontal:45
+	},
+	trashIcon: {
+		fontSize:30,
+		marginTop:10
 	},
 	title:{
 		fontSize:20,

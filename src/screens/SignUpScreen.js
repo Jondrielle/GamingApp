@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Pressable, Alert, ScrollView,TextInput } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import IconTextImageDetail from "../components/IconTextImageDetail";
-import TutorialScreen from "../screens/TutorialScreen";
 import LoginButtonDetail from "../components/LoginButtonDetail";
 import LogoDetail from '../../assets/logo/GameNet2.mp4';
 import {Video} from "expo-av";
@@ -15,6 +14,9 @@ let user = {
 	code: ''
 }
 
+/* 
+	This file is for signing up as user 
+*/
 const SignUpScreen = (props) => {
 
 	const [username, setUserName] = useState('')
@@ -81,7 +83,6 @@ const SignUpScreen = (props) => {
 			try {
 				console.log(typeof user, typeof securedCode.code)
 				await AsyncStorage.setItem(securedCode.code, JSON.stringify(user));
-				props.navigation.navigate('Welcome', user);
 			} catch (error) {
 				console.log(error);
 			}
@@ -125,7 +126,7 @@ const SignUpScreen = (props) => {
 					viewInput={false}
 					handler={function (newText) { setEmail(newText); user = { ...user, email: newText } }}
 				/>
-				<Text style={styles.errorStyle2}>{email.length > 8 ? null : 'code cannot be less than 8 characters'}</Text>
+				<Text style={styles.errorStyle2}>{email.length > 8 ? null : 'email cannot be less than 8 characters'}</Text>
 			
 				<LoginButtonDetail 
 					colorChange ={true}
@@ -179,7 +180,7 @@ const SignUpScreen = (props) => {
 									setData()
 									storageGet(securedCode.code)
 									getAll()
-									props.navigation.navigate("Tab");
+									props.navigation.navigate("option");
 								}
 							}
 						}

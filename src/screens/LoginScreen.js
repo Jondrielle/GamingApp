@@ -8,7 +8,9 @@ import ForgotButtonDetail from "../components/ForgotButtonDetail";
 import TabNavigationRoutes from "../components/TabNavigationRoutes";
 import {Video} from "expo-av";
 
-
+/*
+	This file allows the user to either sign up or login. 
+*/
 // setting the state of individual code to false
 let isCode = false
 
@@ -147,7 +149,7 @@ const LoginScreen = (props) => {
 
 				<ForgotButtonDetail title='forgot password ?'
 					handler={() => {
-						props.navigation.navigate('unique')
+						props.navigation.navigate('reset')
 					}
 					}
 				/>
