@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity} from "react-native"
+import { View, StyleSheet, Text, TouchableOpacity,ScrollView} from "react-native"
 import LoginButtonDetail from "../components/LoginButtonDetail";
 import TabNavigationRoutes from "../components/TabNavigationRoutes";
 
@@ -20,14 +20,10 @@ let screenPrompt = {
     option:'Tutorials',
     player:'VideoPlayerScreen',
     index:'IndexScreen'
-
 }
 
 let route = ''
-
 let message ='back to ';
-
-
 
 const VideoPlayerScreen = function (props) {
 
@@ -44,35 +40,28 @@ const VideoPlayerScreen = function (props) {
 
     return <View style={styles.container}> 
         <View style={styles.circleShape}>
-
-<Video
-
-	style={styles.circleicon}
-	source={require('../../assets/logo/GameNet2.mp4')}
-	isLooping ={true}
-	//useNativeControls
-	resizeMode="contain"
-	shouldPlay
-
-
-/>
-</View>
-<Text style={styles.text}>{vidtext}</Text>
+            <Video
+	            style={styles.circleicon}
+	            source={require('../../assets/logo/GameNet2.mp4')}
+	            isLooping ={true}
+	            //useNativeControls
+	            resizeMode="contain"
+	            shouldPlay/>
+        </View>
+        <Text style={styles.text}>{vidtext}</Text>
         <View style={styles.background}>
             <Video
                 source={vidlink}
                 useNativeControls
                 resizeMode='stretch'
-                style={styles.videoplayerstyle}
-            />
+                style={styles.videoplayerstyle}/>
             <View style={{marginTop:50,marginBottom:30}}>
             <TouchableOpacity onPress = { () => {props.navigation.navigate("Tab")} } >
                  <View style={styles.innerView}>
                     <Text style = {styles.button}>Home Screen</Text>
                  </View>
             </TouchableOpacity>
-            </View>
-
+        </View>
         </View>
     </View>
 }

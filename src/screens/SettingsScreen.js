@@ -4,6 +4,9 @@ import {Ionicons} from '@expo/vector-icons';
 import UserScreen from "./UserScreen";
 import {Feather} from "react-native-vector-icons"
 
+/*
+    This file is where the user can access their account and tutorials.
+*/
 const SettingsScreen = (props) => {
     return <View style={styles.mainView}>
         <View style={{ marginLeft: 20}}>

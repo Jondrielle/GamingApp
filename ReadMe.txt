@@ -1,0 +1,1 @@
+Our app is called GameNet and it provides a place for users to find content on both indie games as well as major company games. The user is able to find, add, and delete games as they see fit. Some notable features include both a bottom and stack navigator. 
